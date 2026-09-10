@@ -1,0 +1,4915 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Meliá Philippines | Luxury Hotels</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+
+<!-- Font Awesome -->
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+font-family:'Montserrat',sans-serif;
+background:#faf9f6;
+color:#222;
+}
+
+/* ================= HEADER ================= */
+
+header{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:82px;
+z-index:1000;
+
+display:flex;
+align-items:center;
+justify-content:space-between;
+
+padding:0 6%;
+
+background:rgba(255,255,255,.94);
+backdrop-filter:blur(12px);
+
+border-bottom:1px solid rgba(0,0,0,.08);
+}
+
+.logo{
+color:#111;
+text-decoration:none;
+font-family:'Playfair Display',serif;
+font-size:30px;
+letter-spacing:4px;
+font-weight:500;
+}
+
+.logo span{
+color:#b49652;
+}
+
+.menu-btn{
+width:48px;
+height:48px;
+border:none;
+background:#111;
+color:white;
+cursor:pointer;
+border-radius:50%;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+font-size:21px;
+transition:.3s;
+}
+
+.menu-btn:hover{
+background:#b49652;
+transform:rotate(90deg);
+}
+
+/* =========================================================
+   MELIÁ PREMIUM HERO LOGO
+========================================================= */
+
+.hero-logo{
+    position:absolute;
+
+    z-index:12;
+
+    top:105px;
+    left:50%;
+
+    width:300px;
+
+    transform:translateX(-50%);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    pointer-events:none;
+
+    opacity:1;
+
+    filter:
+        drop-shadow(0 8px 20px rgba(0,0,0,.65))
+        drop-shadow(0 0 15px rgba(212,182,108,.35));
+
+    transition:
+        opacity .5s ease,
+        transform .8s ease,
+        filter .5s ease;
+}
+
+
+/* LOGO IMAGE */
+
+.hero-logo img{
+    width:100%;
+    height:auto;
+
+    display:block;
+
+    object-fit:contain;
+
+    animation:
+        meliaLogoFloat 4s ease-in-out infinite;
+}
+
+
+/* GOLD GLOW */
+
+.hero-logo::before{
+    content:"";
+
+    position:absolute;
+
+    width:75%;
+    height:45%;
+
+    top:30%;
+
+    left:12.5%;
+
+    background:#d4b66c;
+
+    opacity:.12;
+
+    filter:blur(35px);
+
+    border-radius:50%;
+
+    z-index:-1;
+
+    animation:
+        meliaLogoGlow 3s ease-in-out infinite;
+}
+
+
+/* LOGO FLOAT */
+
+@keyframes meliaLogoFloat{
+
+    0%,
+    100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-7px);
+    }
+
+}
+
+
+/* GOLD GLOW ANIMATION */
+
+@keyframes meliaLogoGlow{
+
+    0%,
+    100%{
+        opacity:.08;
+        transform:scale(.9);
+    }
+
+    50%{
+        opacity:.2;
+        transform:scale(1.1);
+    }
+
+}
+
+
+/* =========================================================
+   LOGO SLIDE TRANSITION
+========================================================= */
+
+.hero-logo.logo-changing{
+    opacity:0;
+
+    transform:
+        translateX(-50%)
+        translateY(-20px)
+        scale(.92);
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:600px){
+
+    .hero-logo{
+        top:90px;
+        width:210px;
+    }
+
+}
+
+/* ================= MOBILE LOGO ================= */
+
+@media(max-width:600px){
+
+    .hero-logo{
+        top:95px;
+        width:190px;
+    }
+
+}
+
+/* ================= SIDE MENU ================= */
+
+.side-menu{
+position:fixed;
+top:0;
+right:-390px;
+width:360px;
+height:100vh;
+
+background:#111;
+color:white;
+
+z-index:2000;
+padding:35px;
+
+transition:.45s ease;
+box-shadow:-10px 0 40px rgba(0,0,0,.25);
+}
+
+.side-menu.active{
+right:0;
+}
+
+.close-menu{
+border:none;
+background:transparent;
+color:white;
+
+position:absolute;
+top:25px;
+right:30px;
+
+font-size:32px;
+cursor:pointer;
+}
+
+.side-menu h2{
+margin-top:50px;
+margin-bottom:40px;
+
+font-family:'Playfair Display',serif;
+font-size:30px;
+}
+
+.side-menu ul{
+list-style:none;
+}
+
+.side-menu li{
+margin:22px 0;
+}
+
+.side-menu a{
+color:white;
+text-decoration:none;
+font-size:17px;
+transition:.3s;
+}
+
+.side-menu a:hover{
+color:#d1b36b;
+padding-left:8px;
+}
+
+.social-menu{
+margin-top:60px;
+display:flex;
+gap:12px;
+}
+
+.social-menu a{
+width:45px;
+height:45px;
+border:1px solid rgba(255,255,255,.3);
+border-radius:50%;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+font-size:16px!important;
+padding:0!important;
+}
+
+.social-menu a:hover{
+background:#b49652;
+color:white!important;
+
+}
+
+
+.chat-message{
+    max-width:82%;
+}
+
+/* ================= HERO ================= */
+
+.hero{
+position:relative;
+height:100vh;
+min-height:700px;
+overflow:hidden;
+
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+.slide{
+position:absolute;
+inset:0;
+
+background-size:cover;
+background-position:center;
+
+opacity:0;
+transform:scale(1.05);
+
+transition:
+opacity 1.3s ease,
+transform 7s ease;
+}
+
+.slide.active{
+opacity:1;
+transform:scale(1);
+}
+
+.slide::after{
+content:"";
+position:absolute;
+inset:0;
+
+background:linear-gradient(
+rgba(0,0,0,.35),
+rgba(0,0,0,.60)
+);
+}
+
+.slide-1{
+    background-image: url("images/hero/Tagaytay.jpg");
+}
+
+.slide-2{
+    background-image: url("images/hero/laguna.jpg");
+}
+
+.slide-3{
+    background-image: url("images/hero/baguio.jpg");
+}
+
+.hero-content{
+position:relative;
+z-index:10;
+
+width:90%;
+max-width:1200px;
+
+text-align:center;
+color:white;
+
+margin-top:60px;
+}
+
+.hero-content p{
+text-transform:uppercase;
+letter-spacing:5px;
+font-size:13px;
+margin-bottom:20px;
+}
+
+.hero-content h1{
+font-family:'Playfair Display',serif;
+font-weight:400;
+
+font-size:clamp(48px,7vw,90px);
+line-height:1.05;
+
+margin-bottom:25px;
+}
+
+.hero-content h1 span{
+color:#e2c77f;
+}
+
+.hero-content .subtitle{
+max-width:650px;
+margin:auto;
+
+font-size:15px;
+line-height:1.8;
+}
+
+/* ================= BOOKING BAR ================= */
+
+.booking-card{
+position:absolute;
+z-index:20;
+
+bottom:45px;
+left:50%;
+
+transform:translateX(-50%);
+
+width:min(1100px,92%);
+
+background:white;
+
+padding:18px;
+
+display:grid;
+grid-template-columns:1fr 1fr 1fr 1fr auto;
+gap:10px; 
+
+box-shadow:0 15px 50px rgba(0,0,0,.25);
+}
+
+.booking-field{
+padding:8px 15px;
+border-right:1px solid #ddd;
+}
+
+.booking-field label{
+display:block;
+
+font-size:10px;
+font-weight:700;
+
+text-transform:uppercase;
+letter-spacing:1px;
+
+color:#777;
+margin-bottom:7px;
+}
+
+.booking-field input,
+.booking-field select{
+border:none;
+outline:none;
+
+width:100%;
+
+font-family:inherit;
+font-size:14px;
+
+color:#222;
+background:white;
+}
+
+.check-btn{
+border:none;
+background:#111;
+color:white;
+
+padding:0 25px;
+
+font-family:inherit;
+font-size:12px;
+font-weight:700;
+
+text-transform:uppercase;
+letter-spacing:1px;
+
+cursor:pointer;
+transition:.3s;
+}
+
+.check-btn:hover{
+background:#b49652;
+}
+
+/* ================= SLIDER DOTS ================= */
+
+.slider-dots{
+position:absolute;
+z-index:30;
+
+right:40px;
+bottom:180px;
+
+display:flex;
+flex-direction:column;
+gap:10px;
+}
+
+.dot{
+width:9px;
+height:9px;
+
+border-radius:50%;
+background:rgba(255,255,255,.5);
+
+cursor:pointer;
+transition:.3s;
+}
+
+.dot.active{
+background:white;
+transform:scale(1.4);
+}
+
+/* ================= INTRO ================= */
+
+.intro{
+padding:120px 8%;
+text-align:center;
+max-width:1100px;
+margin:auto;
+}
+
+.section-label{
+color:#b49652;
+
+font-size:12px;
+font-weight:700;
+
+text-transform:uppercase;
+letter-spacing:3px;
+
+margin-bottom:18px;
+}
+
+.intro h2{
+font-family:'Playfair Display',serif;
+font-size:clamp(38px,5vw,60px);
+font-weight:400;
+
+margin-bottom:25px;
+}
+
+.intro p{
+color:#666;
+line-height:1.9;
+max-width:750px;
+margin:auto;
+}
+
+/* ================= DESTINATIONS ================= */
+
+.destinations{
+padding:20px 6% 100px;
+}
+
+.section-title{
+text-align:center;
+margin-bottom:50px;
+}
+
+.section-title h2{
+font-family:'Playfair Display',serif;
+font-size:50px;
+font-weight:400;
+}
+
+.destination-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:25px;
+}
+
+.destination{
+height:520px;
+position:relative;
+overflow:hidden;
+border-radius:3px;
+}
+
+.destination img{
+width:100%;
+height:100%;
+object-fit:cover;
+transition:.8s;
+}
+
+.destination:hover img{
+transform:scale(1.08);
+}
+
+.destination::after{
+content:"";
+position:absolute;
+inset:0;
+
+background:linear-gradient(
+transparent 35%,
+rgba(0,0,0,.82)
+);
+}
+
+.destination-content{
+position:absolute;
+z-index:5;
+
+left:30px;
+right:30px;
+bottom:30px;
+
+color:white;
+}
+
+.destination-content h3{
+font-family:'Playfair Display',serif;
+font-size:38px;
+font-weight:400;
+}
+
+.destination-content p{
+margin-top:8px;
+font-size:13px;
+margin-bottom:18px;
+}
+
+.destination-social{
+display:flex;
+gap:10px;
+margin-bottom:18px;
+}
+
+.destination-social a{
+width:38px;
+height:38px;
+
+border:1px solid rgba(255,255,255,.7);
+border-radius:50%;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+color:white;
+text-decoration:none;
+
+transition:.3s;
+}
+
+.destination-social a:hover{
+background:#b49652;
+border-color:#b49652;
+}
+
+/* ================= BUTTONS ================= */
+
+.btn-row{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+}
+
+.btn{
+display:inline-flex;
+align-items:center;
+justify-content:center;
+gap:8px;
+
+padding:12px 18px;
+
+text-decoration:none;
+
+font-size:10px;
+font-weight:700;
+
+text-transform:uppercase;
+letter-spacing:1px;
+
+cursor:pointer;
+
+transition:.3s;
+}
+
+.btn-gold{
+background:#b49652;
+color:white;
+border:1px solid #b49652;
+}
+
+.btn-gold:hover{
+background:#d2b96f;
+}
+
+.btn-outline{
+background:transparent;
+color:white;
+border:1px solid white;
+}
+
+.btn-outline:hover{
+background:white;
+color:#111;
+}
+
+/* ================= ROOMS ================= */
+
+.rooms{
+padding:100px 6%;
+background:#f2efe8;
+}
+
+.rooms-header{
+text-align:center;
+max-width:750px;
+margin:0 auto 55px;
+}
+
+.rooms-header h2{
+font-family:'Playfair Display',serif;
+font-size:50px;
+font-weight:400;
+margin-bottom:20px;
+}
+
+.rooms-header p{
+color:#777;
+line-height:1.8;
+}
+
+.room-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:28px;
+max-width:1250px;
+margin:auto;
+}
+
+.room-card{
+background:white;
+box-shadow:0 15px 45px rgba(0,0,0,.08);
+overflow:hidden;
+transition:.3s;
+}
+
+.room-card:hover{
+transform:translateY(-8px);
+box-shadow:0 25px 55px rgba(0,0,0,.14);
+}
+
+.room-image{
+height:280px;
+overflow:hidden;
+position:relative;
+}
+
+.room-image img{
+width:100%;
+height:100%;
+object-fit:cover;
+transition:.6s;
+}
+
+.room-card:hover .room-image img{
+transform:scale(1.06);
+}
+
+.room-badge{
+position:absolute;
+top:18px;
+left:18px;
+
+background:#111;
+color:white;
+
+padding:8px 12px;
+
+font-size:10px;
+font-weight:700;
+letter-spacing:1px;
+text-transform:uppercase;
+}
+
+.room-info{
+padding:28px;
+}
+
+.room-info h3{
+font-family:'Playfair Display',serif;
+font-size:29px;
+font-weight:400;
+margin-bottom:12px;
+}
+
+.room-location{
+color:#b49652;
+font-size:12px;
+font-weight:600;
+margin-bottom:15px;
+}
+
+.room-description{
+font-size:13px;
+color:#777;
+line-height:1.7;
+margin-bottom:20px;
+}
+
+.room-features{
+display:flex;
+flex-wrap:wrap;
+gap:8px;
+margin-bottom:22px;
+}
+
+.room-features span{
+background:#f4f1eb;
+padding:8px 10px;
+font-size:10px;
+color:#555;
+}
+
+.price{
+display:flex;
+justify-content:space-between;
+align-items:end;
+
+padding-top:20px;
+border-top:1px solid #eee;
+
+margin-bottom:20px;
+}
+
+.price small{
+display:block;
+font-size:10px;
+color:#888;
+text-transform:uppercase;
+letter-spacing:1px;
+margin-bottom:5px;
+}
+
+.price strong{
+font-size:23px;
+color:#111;
+}
+
+.price strong span{
+font-size:11px;
+font-weight:400;
+color:#777;
+}
+
+.review{
+color:#b49652;
+font-size:13px;
+}
+
+.review span{
+color:#777;
+font-size:11px;
+margin-left:5px;
+}
+
+/* ================= GALLERY ================= */
+
+.gallery{
+padding:110px 6%;
+}
+
+.gallery-grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+grid-auto-rows:220px;
+gap:15px;
+max-width:1250px;
+margin:auto;
+}
+
+.gallery-item{
+overflow:hidden;
+position:relative;
+}
+
+.gallery-item.large{
+grid-column:span 2;
+grid-row:span 2;
+}
+
+.gallery-item img{
+width:100%;
+height:100%;
+object-fit:cover;
+transition:.6s;
+}
+
+.gallery-item:hover img{
+transform:scale(1.08);
+}
+
+/* ================= MAPS ================= */
+
+.maps{
+padding:110px 6%;
+background:#111;
+color:white;
+}
+
+.maps .section-title h2{
+color:white;
+}
+
+.maps .section-label{
+color:#d2b66d;
+}
+
+.map-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:25px;
+max-width:1250px;
+margin:auto;
+}
+
+.map-card{
+background:#1b1b1b;
+border:1px solid #333;
+}
+
+.map-card iframe{
+width:100%;
+height:280px;
+border:0;
+display:block;
+}
+
+.map-info{
+padding:22px;
+}
+
+.map-info h3{
+font-family:'Playfair Display',serif;
+font-size:27px;
+font-weight:400;
+margin-bottom:8px;
+}
+
+.map-info p{
+color:#aaa;
+font-size:12px;
+line-height:1.6;
+}
+
+/* ================= REVIEWS ================= */
+
+.reviews{
+padding:110px 6%;
+background:#faf9f6;
+}
+
+.review-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:25px;
+max-width:1150px;
+margin:auto;
+}
+
+.review-card{
+background:white;
+padding:35px;
+
+border:1px solid #e5e2dc;
+box-shadow:0 10px 30px rgba(0,0,0,.04);
+}
+
+.review-stars{
+color:#b49652;
+font-size:16px;
+margin-bottom:18px;
+}
+
+.review-card p{
+color:#666;
+font-size:13px;
+line-height:1.8;
+font-style:italic;
+margin-bottom:22px;
+}
+
+.reviewer{
+display:flex;
+align-items:center;
+gap:12px;
+}
+
+.reviewer-avatar{
+width:42px;
+height:42px;
+border-radius:50%;
+
+background:#111;
+color:white;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+font-family:'Playfair Display',serif;
+}
+
+.reviewer strong{
+font-size:13px;
+}
+
+.reviewer small{
+display:block;
+color:#999;
+margin-top:3px;
+}
+
+/* ================= OFFERS ================= */
+
+.offers{
+padding:100px 7%;
+background:#111;
+color:white;
+}
+
+.offers-container{
+max-width:1200px;
+margin:auto;
+
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:70px;
+align-items:center;
+}
+
+.offer-image{
+height:520px;
+overflow:hidden;
+}
+
+.offer-image img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+.offer-text .section-label{
+color:#d4b86c;
+}
+
+.offer-text h2{
+font-family:'Playfair Display',serif;
+font-size:55px;
+font-weight:400;
+margin-bottom:25px;
+}
+
+.offer-text p{
+color:#bbb;
+line-height:1.8;
+margin-bottom:30px;
+}
+
+.offer-btn{
+display:inline-block;
+
+color:white;
+text-decoration:none;
+
+border:1px solid #c9ad68;
+
+padding:15px 28px;
+
+text-transform:uppercase;
+font-size:11px;
+letter-spacing:2px;
+
+transition:.3s;
+}
+
+.offer-btn:hover{
+background:#c9ad68;
+color:#111;
+}
+
+/* ================= SERVICES ================= */
+
+.services{
+padding:110px 7%;
+}
+
+.service-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:25px;
+}
+
+.service{
+padding:45px 30px;
+text-align:center;
+
+border:1px solid #e5e2dc;
+
+transition:.3s;
+}
+
+.service:hover{
+transform:translateY(-8px);
+box-shadow:0 20px 40px rgba(0,0,0,.08);
+}
+
+.service-icon{
+font-size:35px;
+margin-bottom:20px;
+}
+
+.service h3{
+font-family:'Playfair Display',serif;
+font-size:25px;
+margin-bottom:15px;
+}
+
+.service p{
+color:#777;
+font-size:14px;
+line-height:1.7;
+}
+
+/* ================= PREMIUM CONTACT SECTION ================= */
+
+.footer-contact-section{
+    grid-column:span 2;
+    margin-top:20px;
+}
+
+.contact-main-title{
+    color:#d3b66e;
+    text-transform:uppercase;
+    letter-spacing:3px;
+    font-size:13px;
+    margin-bottom:8px;
+}
+
+.contact-subtitle{
+    color:#888;
+    font-size:12px;
+    margin:0 0 25px;
+}
+
+
+/* CONTACT CARDS */
+
+.contact-cards{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.contact-card{
+    position:relative;
+    padding:25px 22px;
+    min-height:210px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.07),
+            rgba(255,255,255,.02)
+        );
+
+    border:1px solid rgba(212,182,108,.25);
+
+    box-shadow:
+        0 15px 35px rgba(0,0,0,.25);
+
+    overflow:hidden;
+
+    transition:
+        transform .4s ease,
+        border-color .4s ease,
+        box-shadow .4s ease;
+}
+
+
+/* GOLD BACKGROUND GLOW */
+
+.contact-card::before{
+    content:"";
+    position:absolute;
+
+    width:120px;
+    height:120px;
+
+    top:-60px;
+    right:-60px;
+
+    background:#b49652;
+
+    opacity:.08;
+
+    border-radius:50%;
+
+    transition:.5s;
+}
+
+
+.contact-card:hover{
+    transform:translateY(-8px);
+
+    border-color:#b49652;
+
+    box-shadow:
+        0 25px 50px rgba(0,0,0,.4);
+}
+
+
+.contact-card:hover::before{
+    transform:scale(2);
+    opacity:.12;
+}
+
+
+/* ICON */
+
+.contact-icon{
+    width:48px;
+    height:48px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border:1px solid rgba(212,182,108,.5);
+
+    color:#d3b66e;
+
+    border-radius:50%;
+
+    font-size:17px;
+
+    margin-bottom:18px;
+
+    transition:.4s;
+}
+
+
+.contact-card:hover .contact-icon{
+    background:#b49652;
+    color:#111;
+
+    transform:rotate(8deg);
+}
+
+
+/* CONTENT */
+
+.contact-card-content{
+    position:relative;
+    z-index:2;
+}
+
+
+.contact-location{
+    display:block;
+
+    color:#b49652;
+
+    font-size:9px;
+
+    font-weight:700;
+
+    letter-spacing:3px;
+
+    margin-bottom:5px;
+}
+
+
+.contact-card h3{
+    color:white;
+
+    font-family:'Playfair Display',serif;
+
+    font-size:27px;
+
+    font-weight:400;
+
+    margin-bottom:18px;
+}
+
+
+/* PHONE + EMAIL */
+
+.contact-link{
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    width:100%;
+
+    color:#aaa;
+
+    text-decoration:none;
+
+    font-size:11px;
+
+    margin:10px 0;
+
+    transition:.3s;
+}
+
+
+.contact-link i{
+    width:18px;
+
+    color:#b49652;
+
+    text-align:center;
+
+    font-size:12px;
+}
+
+
+.contact-link:hover{
+    color:white;
+
+    padding-left:5px;
+}
+
+
+.contact-link:hover i{
+    color:#d8bc76;
+}
+
+
+/* ================= MOBILE ================= */
+
+@media(max-width:900px){
+
+    .footer-contact-section{
+        grid-column:span 1;
+    }
+
+    .contact-cards{
+        grid-template-columns:1fr;
+    }
+
+}
+
+
+@media(max-width:600px){
+
+    .contact-card{
+        min-height:auto;
+
+        padding:22px;
+    }
+
+    .contact-card h3{
+        font-size:25px;
+    }
+
+}
+
+/* =========================================================
+   MELIÁ PHILIPPINES — PRO CHAT
+========================================================= */
+
+.pro-chat-widget{
+    position:fixed;
+    right:25px;
+    bottom:25px;
+    z-index:99999;
+    font-family:'Montserrat',sans-serif;
+}
+
+/* ================= MINIMIZED CHAT ================= */
+
+.pro-chat-window.minimized{
+    height:60px;
+}
+
+.pro-chat-window.minimized .pro-chat-body,
+.pro-chat-window.minimized .pro-chat-quick,
+.pro-chat-window.minimized .pro-chat-typing,
+.pro-chat-window.minimized .pro-chat-input,
+.pro-chat-window.minimized .pro-chat-powered{
+    display:none;
+}
+
+
+/* ================= CHAT BUTTON ================= */
+
+.pro-chat-button{
+    position:relative;
+    width:64px;
+    height:64px;
+
+    border:0;
+    border-radius:50%;
+
+    background:linear-gradient(
+        135deg,
+        #d9bd6b,
+        #9d7c38
+    );
+
+    color:#111;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 12px 35px rgba(0,0,0,.35),
+        0 0 0 1px rgba(255,255,255,.2);
+
+    transition:.35s ease;
+}
+
+.pro-chat-button:hover{
+    transform:scale(1.08);
+
+    box-shadow:
+        0 18px 45px rgba(0,0,0,.4),
+        0 0 25px rgba(212,182,108,.35);
+}
+
+.pro-chat-button i{
+    font-size:24px;
+    position:relative;
+    z-index:2;
+}
+
+.pro-chat-pulse{
+    position:absolute;
+    inset:0;
+
+    border:2px solid #d9bd6b;
+    border-radius:50%;
+
+    animation:proChatPulse 2s infinite;
+}
+
+@keyframes proChatPulse{
+
+    0%{
+        transform:scale(1);
+        opacity:.8;
+    }
+
+    70%{
+        transform:scale(1.4);
+        opacity:0;
+    }
+
+    100%{
+        transform:scale(1.4);
+        opacity:0;
+    }
+
+}
+
+
+/* ================= CHAT WINDOW ================= */
+
+.pro-chat-window{
+    position:absolute;
+
+    right:0;
+    bottom:82px;
+
+    width:390px;
+    height:610px;
+
+    max-width:calc(100vw - 30px);
+    max-height:calc(100vh - 110px);
+
+    background:#fff;
+
+    border-radius:22px;
+
+    overflow:hidden;
+
+    display:flex;
+    flex-direction:column;
+
+    box-shadow:
+        0 30px 90px rgba(0,0,0,.35);
+
+    border:1px solid rgba(0,0,0,.08);
+
+    opacity:0;
+    visibility:hidden;
+
+    transform:
+        translateY(25px)
+        scale(.96);
+
+    transition:
+        opacity .3s ease,
+        transform .3s ease,
+        visibility .3s ease;
+}
+
+.pro-chat-window.active{
+    opacity:1;
+    visibility:visible;
+
+    transform:
+        translateY(0)
+        scale(1);
+}
+
+
+/* ================= CHAT HEADER ================= */
+
+.pro-chat-header{
+    background:
+        linear-gradient(
+            135deg,
+            #0b0b0b,
+            #242424
+        );
+
+    color:white;
+
+    padding:18px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.pro-chat-brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.pro-chat-logo{
+    width:45px;
+    height:45px;
+
+    border-radius:12px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #dfc67d,
+            #a38442
+        );
+
+    color:#111;
+
+    font-family:'Playfair Display',serif;
+
+    font-size:22px;
+    font-weight:600;
+}
+
+.pro-chat-brand h3{
+    margin:0 0 4px;
+
+    font-family:'Playfair Display',serif;
+
+    font-size:18px;
+    font-weight:400;
+}
+
+.pro-chat-status{
+    font-size:10px;
+    color:#aaa;
+}
+
+.pro-chat-online{
+    display:inline-block;
+
+    width:7px;
+    height:7px;
+
+    background:#45d68a;
+
+    border-radius:50%;
+
+    margin-right:5px;
+
+    box-shadow:0 0 8px #45d68a;
+}
+
+.pro-chat-controls{
+    display:flex;
+    gap:5px;
+}
+
+.pro-chat-controls button{
+    width:30px;
+    height:30px;
+
+    border:0;
+    border-radius:8px;
+
+    background:rgba(255,255,255,.1);
+
+    color:white;
+
+    cursor:pointer;
+
+    font-size:17px;
+
+    transition:.25s;
+}
+
+.pro-chat-controls button:hover{
+    background:#b49652;
+}
+
+
+/* ================= CHAT BODY ================= */
+
+.pro-chat-body{
+    flex:1;
+
+    overflow-y:auto;
+
+    padding:20px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #faf9f6,
+            #f2f0eb
+        );
+}
+
+.pro-chat-body::-webkit-scrollbar{
+    width:5px;
+}
+
+.pro-chat-body::-webkit-scrollbar-thumb{
+    background:#c9b878;
+    border-radius:10px;
+}
+
+
+/* ================= WELCOME ================= */
+
+.pro-chat-welcome{
+    text-align:center;
+
+    margin-bottom:22px;
+}
+
+.pro-chat-welcome-icon{
+    width:55px;
+    height:55px;
+
+    margin:0 auto 10px;
+
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:#111;
+    color:#d3b66e;
+
+    font-size:22px;
+}
+
+.pro-chat-welcome h2{
+    font-family:'Playfair Display',serif;
+
+    font-size:23px;
+    font-weight:400;
+
+    margin-bottom:7px;
+}
+
+.pro-chat-welcome p{
+    color:#777;
+
+    font-size:12px;
+
+    line-height:1.7;
+
+    max-width:280px;
+
+    margin:auto;
+}
+
+
+/* ================= MESSAGE ================= */
+
+.pro-chat-message{
+    display:flex;
+
+    gap:9px;
+
+    margin-bottom:18px;
+
+    animation:
+        proMessageIn .3s ease;
+}
+
+@keyframes proMessageIn{
+
+    from{
+        opacity:0;
+        transform:translateY(10px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+.pro-chat-avatar{
+    flex-shrink:0;
+
+    width:32px;
+    height:32px;
+
+    border-radius:10px;
+
+    background:#b49652;
+
+    color:#111;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-family:'Playfair Display',serif;
+
+    font-weight:600;
+}
+
+.pro-chat-message-content{
+    max-width:80%;
+}
+
+.pro-chat-message-name{
+    display:block;
+
+    font-size:9px;
+
+    color:#999;
+
+    margin-bottom:5px;
+}
+
+.pro-chat-bubble{
+    background:white;
+
+    padding:12px 14px;
+
+    border-radius:
+        5px
+        16px
+        16px
+        16px;
+
+    color:#444;
+
+    font-size:12px;
+
+    line-height:1.65;
+
+    box-shadow:
+        0 4px 15px rgba(0,0,0,.06);
+}
+
+.pro-chat-time{
+    display:block;
+
+    margin-top:5px;
+
+    font-size:8px;
+
+    color:#aaa;
+}
+
+
+/* ================= USER MESSAGE ================= */
+
+.pro-chat-user{
+    justify-content:flex-end;
+}
+
+.pro-chat-user .pro-chat-message-content{
+    text-align:right;
+}
+
+.pro-chat-user .pro-chat-bubble{
+    background:
+        linear-gradient(
+            135deg,
+            #d9bd6b,
+            #ad8d49
+        );
+
+    color:#111;
+
+    border-radius:
+        16px
+        5px
+        16px
+        16px;
+}
+
+
+/* ================= QUICK BUTTONS ================= */
+
+.pro-chat-quick{
+    display:flex;
+
+    gap:7px;
+
+    padding:10px 13px;
+
+    background:white;
+
+    border-top:1px solid #eee;
+
+    overflow-x:auto;
+}
+
+.pro-chat-quick::-webkit-scrollbar{
+    display:none;
+}
+
+.pro-chat-quick button{
+    flex-shrink:0;
+
+    border:1px solid #ddd;
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:9px 12px;
+
+    font-family:'Montserrat',sans-serif;
+
+    font-size:10px;
+
+    cursor:pointer;
+
+    color:#555;
+
+    transition:.25s;
+}
+
+.pro-chat-quick button:hover{
+    background:#111;
+    color:white;
+    border-color:#111;
+}
+
+
+/* ================= TYPING ================= */
+
+.pro-chat-typing{
+    display:none;
+
+    align-items:center;
+
+    gap:4px;
+
+    padding:8px 18px;
+
+    color:#999;
+
+    font-size:9px;
+}
+
+.pro-chat-typing.active{
+    display:flex;
+}
+
+.pro-chat-typing span{
+    width:5px;
+    height:5px;
+
+    background:#aaa;
+
+    border-radius:50%;
+
+    animation:proTyping 1.2s infinite;
+}
+
+.pro-chat-typing span:nth-child(2){
+    animation-delay:.2s;
+}
+
+.pro-chat-typing span:nth-child(3){
+    animation-delay:.4s;
+}
+
+@keyframes proTyping{
+
+    0%,60%,100%{
+        transform:translateY(0);
+    }
+
+    30%{
+        transform:translateY(-5px);
+    }
+
+}
+
+
+/* ================= INPUT ================= */
+
+.pro-chat-input{
+    display:flex;
+
+    gap:8px;
+
+    padding:12px;
+
+    background:white;
+
+    border-top:1px solid #eee;
+}
+
+.pro-chat-input input{
+    flex:1;
+
+    min-width:0;
+
+    border:1px solid #ddd;
+
+    outline:none;
+
+    border-radius:13px;
+
+    padding:12px 14px;
+
+    font-family:'Montserrat',sans-serif;
+
+    font-size:12px;
+
+    background:#fafafa;
+
+    transition:.25s;
+}
+
+.pro-chat-input input:focus{
+    border-color:#b49652;
+
+    background:white;
+
+    box-shadow:
+        0 0 0 3px rgba(180,150,82,.1);
+}
+
+.pro-chat-send{
+    width:45px;
+
+    border:0;
+
+    border-radius:13px;
+
+    background:#111;
+
+    color:#d3b66e;
+
+    cursor:pointer;
+
+    font-size:17px;
+
+    transition:.25s;
+}
+
+.pro-chat-send:hover{
+    background:#b49652;
+    color:#111;
+}
+
+
+/* ================= FOOTER ================= */
+
+.pro-chat-powered{
+    background:#fafafa;
+
+    color:#999;
+
+    text-align:center;
+
+    padding:7px;
+
+    font-size:8px;
+
+    border-top:1px solid #eee;
+}
+
+.pro-chat-powered strong{
+    color:#a48643;
+}
+
+
+/* ================= MOBILE ================= */
+
+@media(max-width:600px){
+
+    .pro-chat-widget{
+        right:15px;
+        bottom:15px;
+    }
+
+    .pro-chat-button{
+        width:58px;
+        height:58px;
+    }
+
+    .pro-chat-window{
+        position:fixed;
+
+        left:10px;
+        right:10px;
+
+        bottom:83px;
+
+        width:auto;
+
+        height:
+            min(
+                620px,
+                calc(100vh - 105px)
+            );
+
+        border-radius:18px;
+    }
+
+}
+
+
+
+/* ================= FOOTER ================= */
+
+footer{
+background:#0c0c0c;
+color:white;
+padding:70px 7% 30px;
+}
+
+.footer-grid{
+display:grid;
+grid-template-columns:2fr 1fr 1fr 1fr;
+gap:50px;
+
+padding-bottom:50px;
+border-bottom:1px solid #333;
+}
+
+footer .logo{
+color:white;
+}
+
+footer p{
+color:#aaa;
+line-height:1.8;
+margin-top:20px;
+font-size:14px;
+}
+
+footer h4{
+margin-bottom:20px;
+color:#d3b66e;
+text-transform:uppercase;
+letter-spacing:2px;
+font-size:12px;
+}
+
+footer ul{
+list-style:none;
+}
+
+footer li{
+margin:12px 0;
+}
+
+footer a{
+color:#aaa;
+text-decoration:none;
+font-size:13px;
+transition:.3s;
+}
+
+footer a:hover{
+color:white;
+}
+
+.footer-social{
+display:flex;
+gap:10px;
+}
+
+.footer-social a{
+width:40px;
+height:40px;
+border:1px solid #555;
+border-radius:50%;
+
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+.footer-social a:hover{
+background:#b49652;
+border-color:#b49652;
+}
+
+.footer-bottom{
+text-align:center;
+padding-top:30px;
+
+color:#666;
+font-size:12px;
+}
+
+/* ================= MODAL ================= */
+
+.modal{
+position:fixed;
+inset:0;
+
+background:rgba(0,0,0,.75);
+
+display:none;
+align-items:center;
+justify-content:center;
+
+z-index:5000;
+
+padding:20px;
+}
+
+.modal.active{
+display:flex;
+}
+
+.modal-box{
+background:white;
+width:min(650px,100%);
+max-height:90vh;
+overflow:auto;
+
+padding:40px;
+
+position:relative;
+
+box-shadow:0 30px 80px rgba(0,0,0,.4);
+}
+
+.modal-close{
+position:absolute;
+right:20px;
+top:15px;
+
+border:none;
+background:none;
+
+font-size:30px;
+cursor:pointer;
+}
+
+.modal-box h2{
+font-family:'Playfair Display',serif;
+font-size:40px;
+font-weight:400;
+margin-bottom:15px;
+}
+
+.modal-box .modal-price{
+font-size:22px;
+font-weight:700;
+color:#b49652;
+margin:20px 0;
+}
+
+.modal-box p{
+color:#666;
+line-height:1.8;
+font-size:14px;
+margin-bottom:20px;
+}
+
+.modal-list{
+padding-left:20px;
+color:#666;
+line-height:2;
+font-size:13px;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:1000px){
+
+.destination-grid,
+.room-grid,
+.map-grid,
+.review-grid{
+grid-template-columns:1fr 1fr;
+}
+
+.gallery-grid{
+grid-template-columns:repeat(2,1fr);
+}
+
+}
+
+@media(max-width:900px){
+
+.booking-card{
+grid-template-columns:1fr 1fr;
+}
+
+.check-btn{
+min-height:55px;
+grid-column:span 2;
+}
+
+.offers-container{
+grid-template-columns:1fr;
+}
+
+.service-grid{
+grid-template-columns:1fr;
+}
+
+.footer-grid{
+grid-template-columns:1fr 1fr;
+}
+
+}
+
+@media(max-width:600px){
+
+header{
+height:70px;
+padding:0 5%;
+}
+
+.logo{
+font-size:23px;
+}
+
+.hero{
+min-height:850px;
+}
+
+.hero-content{
+margin-top:-100px;
+}
+
+.hero-content h1{
+font-size:52px;
+}
+
+.booking-card{
+bottom:20px;
+grid-template-columns:1fr;
+padding:12px;
+}
+
+.booking-field{
+border-right:none;
+border-bottom:1px solid #ddd;
+padding:13px;
+}
+
+.check-btn{
+grid-column:auto;
+min-height:55px;
+}
+
+.slider-dots{
+right:15px;
+bottom:250px;
+}
+
+.side-menu{
+width:100%;
+right:-100%;
+}
+
+.destination-grid,
+.room-grid,
+.map-grid,
+.review-grid{
+grid-template-columns:1fr;
+}
+
+.destination{
+height:500px;
+}
+
+.gallery-grid{
+grid-template-columns:1fr;
+grid-auto-rows:250px;
+}
+
+.gallery-item.large{
+grid-column:span 1;
+grid-row:span 1;
+}
+
+.offer-text h2{
+font-size:42px;
+}
+
+.footer-grid{
+grid-template-columns:1fr;
+}
+
+.section-title h2,
+.rooms-header h2{
+font-size:40px;
+}
+
+.modal-box{
+padding:30px 22px;
+}
+
+}
+
+/* ================= BOOKING SUCCESS ================= */
+
+.booking-message{
+display:none;
+
+position:fixed;
+bottom:25px;
+left:50%;
+
+transform:translateX(-50%);
+
+background:#111;
+color:white;
+
+padding:18px 25px;
+
+z-index:6000;
+
+box-shadow:0 15px 40px rgba(0,0,0,.3);
+
+font-size:13px;
+}
+
+.booking-message.show{
+display:block;
+}
+
+</style>
+</head>
+
+<body>
+
+
+<!-- ================= HEADER ================= -->
+
+<header>
+
+<a href="#home" class="logo">
+MELI<span>Á</span>
+</a>
+
+<button class="menu-btn" id="menuBtn">
+<i class="fa-solid fa-bars"></i>
+</button>
+
+</header>
+
+
+
+<!-- ================= SIDE MENU ================= -->
+
+<aside class="side-menu" id="sideMenu">
+
+<button class="close-menu" id="closeMenu">
+×
+</button>
+
+<h2>Explore</h2>
+
+<ul>
+<li><a href="#home">Home</a></li>
+<li><a href="#destinations">Destinations</a></li>
+<li><a href="#rooms">Rooms & Prices</a></li>
+<li><a href="#gallery">Gallery</a></li>
+<li><a href="#maps">Google Maps</a></li>
+<li><a href="#reviews">Guest Reviews</a></li>
+<li><a href="#offers">Latest Offer</a></li>
+<li><a href="#contact">Contact us</a></li>
+<li><a href="#contact">Email</a></li>
+<li><a href="#contact">Chat</a></li>
+
+</ul>
+
+<div class="social-menu">
+
+<a href="https://www.facebook.com/"
+target="_blank"
+aria-label="Facebook">
+<i class="fa-brands fa-facebook-f"></i>
+</a>
+
+<a href="https://www.instagram.com/"
+target="_blank"
+aria-label="Instagram">
+<i class="fa-brands fa-instagram"></i>
+</a>
+
+</div>
+
+</aside>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero" id="home">
+
+<div class="slide slide-1 active"></div>
+<div class="slide slide-2"></div>
+<div class="slide slide-3"></div>
+
+ <!-- MELIÁ HERO LOGO -->
+
+    <div class="hero-logo" id="heroLogo">
+
+        <img
+            src="images/logo/logo.png"
+            alt="Meliá Philippines Hotels & Resorts Logo">
+
+    </div>
+
+<div class="hero-content">
+
+
+<p>Luxury • Comfort • Filipino Hospitality</p>
+
+<h1>
+Your Journey<br>
+<span>Starts Here</span>
+</h1>
+
+<p class="subtitle">
+Discover exceptional stays, unforgettable dining,
+inspiring events and warm hospitality across
+Tagaytay, Laguna and Baguio.
+</p>
+
+</div>
+
+
+<!-- BOOKING -->
+
+<form class="booking-card" id="bookingForm">
+
+<div class="booking-field">
+
+<label>Destination</label>
+
+<select id="destinationSelect" required>
+
+<option value="">Select destination</option>
+<option value="Tagaytay">Tagaytay</option>
+<option value="Laguna">Laguna</option>
+<option value="Baguio">Baguio</option>
+
+</select>
+
+</div>
+
+<div class="booking-field">
+
+<label>Arrival Date</label>
+
+<input
+type="date"
+id="arrival"
+required>
+
+</div>
+
+<div class="booking-field">
+
+<label>Departure Date</label>
+
+<input
+type="date"
+id="departure"
+required>
+
+</div>
+
+<div class="booking-field">
+
+<label>Guests</label>
+
+<select id="guests" required>
+
+<option value="1">1 Guest</option>
+<option value="2">2 Guests</option>
+<option value="3">3 Guests</option>
+<option value="4">4 Guests</option>
+<option value="5">5 Guests</option>
+<option value="6">6 Guests</option>
+<option value="7">7 Guests</option>
+<option value="8">8 Guests</option>
+<option value="9">9 Guests</option>
+<option value="10">10 Guests</option>
+<option value="11">11 Guests</option>
+<option value="12">12 Guests</option>
+<option value="13">13 Guests</option>
+<option value="14">14 Guests</option>
+<option value="15">15 Guests</option>
+<option value="16" selected>16 Guests</option>
+
+</select>
+
+</div>
+
+<button
+class="check-btn"
+type="submit">
+
+Check Availability
+
+</button>
+
+</form>
+
+
+<div class="slider-dots">
+
+<div class="dot active" data-slide="0"></div>
+<div class="dot" data-slide="1"></div>
+<div class="dot" data-slide="2"></div>
+
+</div>
+
+</section>
+
+
+<!-- ================= INTRO ================= -->
+
+<section class="intro">
+
+<div class="section-label">
+Welcome to Meliá Philippines
+</div>
+
+<h2>
+A world of exceptional
+experiences
+</h2>
+
+<p>
+From the cool mountains of Baguio to the peaceful
+landscapes of Laguna and the breathtaking views of
+Tagaytay, discover beautiful stays designed for
+families, couples and groups of up to 16 guests.
+</p>
+
+</section>
+
+
+<!-- ================= DESTINATIONS ================= -->
+
+<section class="destinations" id="destinations">
+
+<div class="section-title">
+
+<div class="section-label">
+Explore
+</div>
+
+<h2>Our Destinations</h2>
+
+</div>
+
+
+<div class="destination-grid">
+
+
+<!-- TAGAYTAY -->
+
+<article class="destination">
+
+<img
+src="images/destinations/tagaytay.jpg"
+alt="Tagaytay luxury hotel">
+
+<div class="destination-content">
+
+<h3>Tagaytay</h3>
+
+<p>
+Cool weather • Taal views • Family escapes
+</p>
+
+<div class="destination-social">
+
+<a
+href="https://www.facebook.com/meliasfamilyhousetagaytay/"
+target="_blank"
+aria-label="Tagaytay Facebook">
+
+<i class="fa-brands fa-facebook-f"></i>
+
+</a>
+
+<a
+href="https://www.instagram.com/meliasfamilyhouse_tagaytay/"
+target="_blank"
+aria-label="Tagaytay Instagram">
+
+<i class="fa-brands fa-instagram"></i>
+
+</a>
+
+</div>
+
+<div class="btn-row">
+
+<button
+class="btn btn-gold"
+onclick="openDetails('Tagaytay')">
+
+<i class="fa-solid fa-eye"></i>
+View Details
+
+</button>
+
+<a
+href="#rooms"
+class="btn btn-outline"
+onclick="selectDestination('Tagaytay')">
+
+<i class="fa-solid fa-calendar-check"></i>
+Book Now
+
+</a>
+
+</div>
+
+</div>
+
+</article>
+
+
+<!-- LAGUNA -->
+
+<article class="destination">
+
+<img
+src="images/destinations/laguna.jpg"
+alt="Laguna luxury resort">
+
+<div class="destination-content">
+
+<h3>Laguna</h3>
+
+<p>
+Nature • Wellness • Weekend retreats
+</p>
+
+<div class="destination-social">
+
+<a
+href="https://www.facebook.com/carmelitasgardenlaguna/"
+target="_blank"
+aria-label="Laguna Facebook">
+
+<i class="fa-brands fa-facebook-f"></i>
+
+</a>
+
+<a
+href="https://www.instagram.com/carmelitasgarden_laguna/"
+target="_blank"
+aria-label="Laguna Instagram">
+
+<i class="fa-brands fa-instagram"></i>
+
+</a>
+
+</div>
+
+<div class="btn-row">
+
+<button
+class="btn btn-gold"
+onclick="openDetails('Laguna')">
+
+<i class="fa-solid fa-eye"></i>
+View Details
+
+</button>
+
+<a
+href="#rooms"
+class="btn btn-outline"
+onclick="selectDestination('Laguna')">
+
+<i class="fa-solid fa-calendar-check"></i>
+Book Now
+
+</a>
+
+</div>
+
+</div>
+
+</article>
+
+
+<!-- BAGUIO -->
+
+<article class="destination">
+
+<img
+src="images/destinations/baguio.jpg"
+alt="Baguio luxury hotel">
+
+<div class="destination-content">
+
+<h3>Baguio</h3>
+
+<p>
+Mountain air • Culture • Cozy family stays
+</p>
+
+<div class="destination-social">
+
+<a
+href="https://www.facebook.com/meliasfamilyhousebaguio/"
+target="_blank"
+aria-label="Baguio Facebook">
+
+<i class="fa-brands fa-facebook-f"></i>
+
+</a>
+
+<a
+href="https://www.instagram.com/meliasfamilyhouse_baguio/"
+target="_blank"
+aria-label="Baguio Instagram">
+
+<i class="fa-brands fa-instagram"></i>
+
+</a>
+
+</div>
+
+<div class="btn-row">
+
+<button
+class="btn btn-gold"
+onclick="openDetails('Baguio')">
+
+<i class="fa-solid fa-eye"></i>
+View Details
+
+</button>
+
+<a
+href="#rooms"
+class="btn btn-outline"
+onclick="selectDestination('Baguio')">
+
+<i class="fa-solid fa-calendar-check"></i>
+Book Now
+
+</a>
+
+</div>
+
+</div>
+
+</article>
+
+</div>
+
+</section>
+
+
+<!-- ================= ROOMS & PRICES ================= -->
+
+<section class="rooms" id="rooms">
+
+<div class="rooms-header">
+
+<div class="section-label">
+Rooms & Accommodation
+</div>
+
+<h2>Stay in Comfort</h2>
+
+<p>
+Comfortable rooms designed for families and groups.
+The sample packages below accommodate up to
+<strong>16 guests</strong>.
+</p>
+
+</div>
+
+
+<div class="room-grid">
+
+
+<!-- TAGAYTAY ROOM -->
+
+<article class="room-card">
+
+<div class="room-image">
+
+<img
+src="images/rooms/tagaytay-family-suite.jpg"
+alt="Tagaytay family suite">
+
+<div class="room-badge">
+Best Seller
+</div>
+
+</div>
+
+<div class="room-info">
+
+<div class="room-location">
+TAGAYTAY
+</div>
+
+<h3>Family Garden Suite</h3>
+
+<p class="room-description">
+A spacious family room with relaxing interiors,
+comfortable beds and a beautiful garden atmosphere.
+</p>
+
+<div class="room-features">
+
+<span>
+<i class="fa-solid fa-user-group"></i>
+Up to 13 guests
+</span>
+
+<span>
+<i class="fa-solid fa-Bath"></i>
+3 Bathrooms
+</span>
+
+<span>
+<i class="fa-solid fa-wifi"></i>
+Free Wi-Fi
+</span>
+
+<span>
+<i class="fa-solid fa-Parking"></i>
+Private Parking
+</span>
+
+<span>
+<i class="fa-solid fa-bed"></i>
+4 Bedrooms
+</span>
+
+
+</div>
+
+<div class="price">
+
+<div>
+<small>Starting from</small>
+<strong>₱3,000 <span>/ night</span></strong>
+</div>
+
+<div class="review">
+★★★★★
+<span>4.8</span>
+</div>
+
+</div>
+
+<div class="btn-row">
+
+<button
+class="btn btn-gold"
+onclick="bookRoom('Tagaytay - Family Garden Suite')">
+
+<i class="fa-solid fa-calendar-check"></i>
+Book Now
+
+</button>
+
+<button
+class="btn btn-outline"
+style="color:#111;border-color:#111"
+onclick="openDetails('Tagaytay')">
+
+View Details
+
+</button>
+
+</div>
+
+</div>
+
+</article>
+
+
+<!-- LAGUNA ROOM -->
+
+<article class="room-card">
+
+<div class="room-image">
+
+<img
+src="images/rooms/laguna-family-room.jpg"
+alt="Laguna family resort room">
+
+<div class="room-badge">
+Family Choice
+</div>
+
+</div>
+
+<div class="room-info">
+
+<div class="room-location">
+LAGUNA
+</div>
+
+<h3>Nature Family Villa</h3>
+
+<p class="room-description">
+A peaceful villa surrounded by greenery, ideal for
+families looking for a relaxing weekend retreat.
+</p>
+
+<div class="room-features">
+
+<span>
+<i class="fa-solid fa-user-group"></i>
+Up to 6 pax
+</span>
+
+<span>
+<i class="fa-solid fa-bed"></i>
+4 Bedrooms
+</span>
+
+<span>
+<i class="fa-solid fa-wifi"></i>
+Free Wi-Fi
+</span>
+
+<span>
+<i class="fa-solid fa-bath"></i>
+4 Bathrooms
+</span>
+
+<span>
+<i class="fa-solid fa-Parking"></i>
+Free Parking
+</span>
+
+
+<span>
+<i class="fa-solid fa-shower"></i>
+Shower
+</span>
+
+</div>
+
+<div class="price">
+
+<div>
+<small>Starting from</small>
+<strong>₱3,000 <span>/ night</span></strong>
+</div>
+
+<div class="review">
+★★★★★
+<span>4.7</span>
+</div>
+
+</div>
+
+<div class="btn-row">
+
+<button
+class="btn btn-gold"
+onclick="bookRoom('Laguna - Nature Family Villa')">
+
+<i class="fa-solid fa-calendar-check"></i>
+Book Now
+
+</button>
+
+<button
+class="btn btn-outline"
+style="color:#111;border-color:#111"
+onclick="openDetails('Laguna')">
+
+View Details
+
+</button>
+
+</div>
+
+</div>
+
+</article>
+
+
+<!-- BAGUIO ROOM -->
+
+<article class="room-card">
+
+<div class="room-image">
+
+<img
+src="images/rooms/baguio-family-room.jpg"
+alt="Baguio family room">
+
+<div class="room-badge">
+Mountain Escape
+</div>
+
+</div>
+
+<div class="room-info">
+
+<div class="room-location">
+BAGUIO
+</div>
+
+<h3>Mountain Family Suite</h3>
+
+<p class="room-description">
+A cozy mountain-inspired suite for families who want
+cool weather, comfort and a peaceful Baguio escape.
+</p>
+
+<div class="room-features">
+
+<span>
+<i class="fa-solid fa-user-group"></i>
+Up to 16 guests
+</span>
+
+<span>
+<i class="fa-solid fa-bed"></i>
+14 Comfortable Beds
+</span>
+
+<span>
+<i class="fa-solid fa-wifi"></i>
+Free Wi-Fi
+</span>
+
+<span>
+<i class="fa-solid fa-mountain"></i>
+Mountain View
+</span>
+
+</div>
+
+<div class="price">
+
+<div>
+<small>Starting from</small>
+<strong>₱3,000 <span>/ night</span></strong>
+</div>
+
+<div class="review">
+★★★★★
+<span>4.9</span>
+</div>
+
+</div>
+
+<div class="btn-row">
+
+<button
+class="btn btn-gold"
+onclick="bookRoom('Baguio - Mountain Family Suite')">
+
+<i class="fa-solid fa-calendar-check"></i>
+Book Now
+
+</button>
+
+<button
+class="btn btn-outline"
+style="color:#111;border-color:#111"
+onclick="openDetails('Baguio')">
+
+View Details
+
+</button>
+
+</div>
+
+</div>
+
+</article>
+
+</div>
+
+</section>
+
+<!-- ================= GALLERY ================= -->
+
+<section class="gallery" id="gallery">
+
+<div class="section-title">
+
+<div class="section-label">
+Photo Gallery
+</div>
+
+<h2>Discover Your Stay</h2>
+
+</div>
+
+
+<div class="gallery-grid">
+
+<div class="gallery-item large">
+
+<img
+src="images/gallery/imagesgallerytagaytay-hotel-view.jpg"
+alt="Tagaytay Hotel View">
+
+</div>
+
+<div class="gallery-item">
+
+<img
+src="images/gallery/imagesgallerytagaytay-luxury-interior.jpg"
+alt="Tagaytay Luxury Interior">
+
+</div>
+
+<div class="gallery-item">
+
+<img
+src="images/gallery/imagesgallerylaguna-resort-view.jpg"
+alt="Laguna Resort View">
+
+</div>
+
+<div class="gallery-item">
+
+<img
+src="images/gallery/imagesgallerylaguna-garden.jpg"
+alt="Laguna Garden">
+
+</div>
+
+<div class="gallery-item">
+
+<img
+src="images/gallery/imagesgallerybaguio-hotel-view.jpg"
+alt="Baguio Hotel View">
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= MAPS ================= -->
+
+<section class="maps" id="maps">
+
+<div class="section-title">
+
+<div class="section-label">
+Find Us
+</div>
+
+<h2>Explore Our Locations</h2>
+
+</div>
+
+
+<div class="map-grid">
+
+
+<!-- TAGAYTAY MAP -->
+
+<div class="map-card">
+
+<iframe
+src="https://www.google.com/maps?q=Melia's family house%2C%20Philippines&output=embed"
+loading="lazy"
+allowfullscreen>
+</iframe>
+
+<div class="map-info">
+
+<h3>Tagaytay</h3>
+
+<p>
+Discover cool mountain weather, Taal Volcano views,
+restaurants and relaxing family escapes.
+</p>
+
+</div>
+
+</div>
+
+
+<!-- LAGUNA MAP -->
+
+<div class="map-card">
+
+<iframe
+src="https://www.google.com/maps?q=carmelitas garden laguna%2C%20Philippines&output=embed"
+loading="lazy"
+allowfullscreen>
+</iframe>
+
+<div class="map-info">
+
+<h3>Laguna</h3>
+
+<p>
+Enjoy nature, hot springs, wellness experiences and
+peaceful weekend retreats.
+</p>
+
+</div>
+
+</div>
+
+
+<!-- BAGUIO MAP -->
+
+<div class="map-card">
+
+<iframe
+src="https://www.google.com/maps?q=melia's family house baguio%2C%20Philippines&output=embed"
+loading="lazy"
+allowfullscreen>
+</iframe>
+
+<div class="map-info">
+
+<h3>Baguio</h3>
+
+<p>
+Experience cool mountain air, pine trees, culture and
+cozy family getaways.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= REVIEWS ================= -->
+
+<section class="reviews" id="reviews">
+
+<div class="section-title">
+
+<div class="section-label">
+Guest Reviews
+</div>
+
+<h2>What Guests Say</h2>
+
+</div>
+
+
+<div class="review-grid">
+
+
+<div class="review-card">
+
+<div class="review-stars">
+★★★★★
+</div>
+
+<p>
+"Our stay at Melia’s family house was wonderful. The place was clean, spacious, and had everything we needed. It was in a peaceful neighborhood with fresh air and a great location near tourist spots an."
+</p>
+
+<div class="reviewer">
+
+<div class="reviewer-avatar">
+M
+</div>
+
+<div>
+<strong>Gamez Marjun</strong>
+<small>Family Trip • Tagaytay</small>
+</div>
+
+</div>
+
+</div>
+
+
+<div class="review-card">
+
+<div class="review-stars">
+★★★★★
+</div>
+
+<p>
+"Best places in Laguna. It was so relaxing and the service is excellent.Highly recommended for family and friend's!."
+</p>
+
+<div class="reviewer">
+
+<div class="reviewer-avatar">
+J
+</div>
+
+<div>
+<strong>Jetley Pagdulagan Guro</strong>
+<small>Family Trip • Laguna</small>
+</div>
+
+</div>
+
+</div>
+
+
+<div class="review-card">
+
+<div class="review-stars">
+★★★★★
+</div>
+
+<p>
+"Our staycation was truly wonderful! The property was immaculate, spacious, and had a cozy feel that made us feel right at home. The tranquil atmosphere and beautiful surroundings were perfect."
+</p>
+
+<div class="reviewer">
+
+<div class="reviewer-avatar">
+A
+</div>
+
+<div>
+<strong>Fernando Storres</strong>
+<small>Family Trip • Baguio</small>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= OFFERS ================= -->
+
+<section class="offers" id="offers">
+
+<div class="offers-container">
+
+<div class="offer-image">
+
+<img
+src="images/offer/imagesofferb.jpg"
+alt="Luxury hotel room">
+
+</div>
+
+
+<div class="offer-text">
+
+<div class="section-label">
+Latest Offer
+</div>
+
+<h2>
+Stay longer.<br>
+Experience more.
+</h2>
+
+<p>
+Enjoy an unforgettable family escape with
+comfortable accommodation, dining experiences
+and special benefits for your next Philippine getaway.
+</p>
+
+<a href="#rooms" class="offer-btn">
+Discover Rooms
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= SERVICES ================= -->
+
+<section class="services" id="events">
+
+<div class="section-title">
+
+<div class="section-label">
+Experience
+</div>
+
+<h2>
+Everything You Need
+</h2>
+
+</div>
+
+
+<div class="service-grid">
+
+<div class="service" id="dining">
+
+<div class="service-icon">
+🍽
+</div>
+
+<h3>Dining</h3>
+
+<p>
+Discover carefully crafted dishes, signature drinks
+and memorable dining experiences.
+</p>
+
+</div>
+
+
+<div class="service">
+
+<div class="service-icon">
+✦
+</div>
+
+<h3>Events</h3>
+
+<p>
+Elegant venues for weddings, meetings, celebrations
+and unforgettable occasions.
+</p>
+
+</div>
+
+
+<div class="service" id="inbox">
+
+<div class="service-icon">
+✉
+</div>
+
+<h3>Guest Services</h3>
+
+<p>
+Our team is ready to assist you before, during and
+after your stay.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= CONTACT INFORMATION ================= -->
+
+<div class="footer-contact-section">
+
+    <h4 class="contact-main-title">Contact & Reservations</h4>
+
+    <p class="contact-subtitle">
+        We're here to make your stay unforgettable.
+    </p>
+
+    <div class="contact-cards">
+
+        <!-- TAGAYTAY -->
+        <div class="contact-card">
+
+            <div class="contact-icon">
+                <i class="fa-solid fa-location-dot"></i>
+            </div>
+
+            <div class="contact-card-content">
+
+                <span class="contact-location">
+                    TAGAYTAY
+                </span>
+
+                <h3>Tagaytay</h3>
+
+                <a href="tel:09228795129" class="contact-link">
+                    <i class="fa-solid fa-phone"></i>
+                    <span>0922 879 5129</span>
+                </a>
+
+                <a href="mailto:meliahomesco.businessph@gmail.com" class="contact-link">
+                    <i class="fa-solid fa-envelope"></i>
+                    <span>meliahomesco.businessph@gmail.com</span>
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- LAGUNA -->
+        <div class="contact-card">
+
+            <div class="contact-icon">
+                <i class="fa-solid fa-leaf"></i>
+            </div>
+
+            <div class="contact-card-content">
+
+                <span class="contact-location">
+                    LAGUNA
+                </span>
+
+                <h3>Laguna</h3>
+
+                <a href="tel:09228795129" class="contact-link">
+                    <i class="fa-solid fa-phone"></i>
+                    <span>0922 879 5129</span>
+                </a>
+
+                <a href="mailto:meliahomesco.businessph@gmail.com" class="contact-link">
+                    <i class="fa-solid fa-envelope"></i>
+                    <span>meliahomesco.businessph@gmail.com</span>
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- BAGUIO -->
+        <div class="contact-card">
+
+            <div class="contact-icon">
+                <i class="fa-solid fa-mountain"></i>
+            </div>
+
+            <div class="contact-card-content">
+
+                <span class="contact-location">
+                    BAGUIO
+                </span>
+
+                <h3>Baguio</h3>
+
+                <a href="tel:09228795129" class="contact-link">
+                    <i class="fa-solid fa-phone"></i>
+                    <span>0922 879 5129</span>
+                </a>
+
+                <a href="mailto:meliahomesco.businessph@gmail.com" class="contact-link">
+                    <i class="fa-solid fa-envelope"></i>
+                    <span>meliahomesco.businessph@gmail.com</span>
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     MELIÁ PHILIPPINES — PRO CHAT
+========================================================= -->
+
+<div class="pro-chat-widget">
+
+    <!-- Floating Button -->
+    <button
+        class="pro-chat-button"
+        id="proChatButton"
+        aria-label="Open Meliá Pro Chat">
+
+        <i class="fa-solid fa-comments"></i>
+
+        <span class="pro-chat-pulse"></span>
+
+    </button>
+
+
+    <!-- Chat Window -->
+    <div
+        class="pro-chat-window"
+        id="proChatWindow">
+
+
+        <!-- HEADER -->
+        <div class="pro-chat-header">
+
+            <div class="pro-chat-brand">
+
+                <div class="pro-chat-logo">
+                    M
+                </div>
+
+                <div>
+
+                    <h3>
+                        Meliá Pro Chat
+                    </h3>
+
+                    <div class="pro-chat-status">
+
+                        <span class="pro-chat-online"></span>
+
+                        Online • Ready to assist
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="pro-chat-controls">
+
+                <button
+                    id="proChatMinimize"
+                    aria-label="Minimize chat">
+
+                    −
+
+                </button>
+
+                <button
+                    id="proChatClose"
+                    aria-label="Close chat">
+
+                    ×
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- BODY -->
+        <div
+            class="pro-chat-body"
+            id="proChatBody">
+
+
+            <div class="pro-chat-welcome">
+
+                <div class="pro-chat-welcome-icon">
+
+                    <i class="fa-solid fa-star"></i>
+
+                </div>
+
+                <h2>
+                    Welcome to Meliá
+                </h2>
+
+                <p>
+                    Your personal Meliá Philippines
+                    assistant is ready to help.
+                </p>
+
+            </div>
+
+
+            <!-- FIRST MESSAGE -->
+            <div class="pro-chat-message">
+
+                <div class="pro-chat-avatar">
+                    M
+                </div>
+
+                <div class="pro-chat-message-content">
+
+                    <span class="pro-chat-message-name">
+                        Meliá Assistant
+                    </span>
+
+                    <div class="pro-chat-bubble">
+
+                        Hello! 👋 Welcome to Meliá
+                        Philippines.<br><br>
+
+                        I can help you with
+                        <strong>rooms, destinations,
+                        prices, amenities and booking
+                        information.</strong>
+
+                    </div>
+
+                    <span class="pro-chat-time">
+                        Just now
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- QUICK QUESTIONS -->
+        <div
+            class="pro-chat-quick"
+            id="proChatQuick">
+
+            <button data-chat-question="I want to book a room">
+                <i class="fa-solid fa-calendar-check"></i>
+                Book
+            </button>
+
+            <button data-chat-question="What rooms do you have?">
+                <i class="fa-solid fa-bed"></i>
+                Rooms
+            </button>
+
+            <button data-chat-question="Tell me about Tagaytay">
+                <i class="fa-solid fa-location-dot"></i>
+                Tagaytay
+            </button>
+
+            <button data-chat-question="Tell me about Laguna">
+                <i class="fa-solid fa-leaf"></i>
+                Laguna
+            </button>
+
+            <button data-chat-question="Tell me about Baguio">
+                <i class="fa-solid fa-mountain"></i>
+                Baguio
+            </button>
+
+        </div>
+
+
+        <!-- TYPING -->
+        <div
+            class="pro-chat-typing"
+            id="proChatTyping">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+            Meliá Assistant is typing...
+
+        </div>
+
+
+        <!-- INPUT -->
+        <div class="pro-chat-input">
+
+            <input
+                type="text"
+                id="proChatInput"
+                placeholder="Ask Meliá anything..."
+                autocomplete="off">
+
+            <button
+                class="pro-chat-send"
+                id="proChatSend"
+                aria-label="Send message">
+
+                <i class="fa-solid fa-paper-plane"></i>
+
+            </button>
+
+        </div>
+
+
+        <div class="pro-chat-powered">
+
+            Powered by
+            <strong>Meliá Pro Chat</strong>
+
+        </div>
+ 
+    </div>
+
+</div>
+
+<!-- ================= FOOTER ================= -->
+
+<footer id="contact">
+
+<div class="footer-grid">
+
+<div>
+
+<a href="#home" class="logo">
+MELI<span>Á</span>
+</a>
+
+<p>
+A luxury hotel concept created for travelers looking
+for exceptional experiences in Tagaytay, Laguna
+and Baguio.
+</p>
+
+</div>
+
+
+<div>
+
+<h4>Explore</h4>
+
+<ul>
+
+<li><a href="#home">Home</a></li>
+<li><a href="#destinations">Destinations</a></li>
+<li><a href="#rooms">Rooms & Prices</a></li>
+<li><a href="#gallery">Gallery</a></li>
+
+</ul>
+
+</div>
+
+
+<div>
+
+  
+
+<h4>Information</h4>
+
+<ul>
+
+<li><a href="#maps">Locations</a></li>
+<li><a href="#reviews">Guest Reviews</a></li>
+<li><a href="#offers">Latest Offer</a></li>
+
+</ul>
+
+</div>
+
+
+<div>
+
+<h4>Follow Us</h4>
+
+<div class="footer-social">
+
+<a
+href="https://www.facebook.com/meliasfamilyhousetagaytay/"
+target="_blank"
+aria-label="Facebook">
+
+<i class="fa-brands fa-facebook-f"></i>
+
+</a>
+
+<a
+href="https://www.instagram.com/meliasfamilyhouse_tagaytay/"
+target="_blank"
+aria-label="Instagram">
+
+<i class="fa-brands fa-instagram"></i>
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="footer-bottom">
+
+© 2026 Meliá Philippines Concept.
+All Rights Reserved.
+
+</div>
+
+</footer>
+
+
+<!-- ================= DETAILS MODAL ================= -->
+
+<div class="modal" id="detailsModal">
+
+<div class="modal-box">
+
+<button
+class="modal-close"
+onclick="closeDetails()">
+
+×
+
+</button>
+
+<h2 id="modalTitle">
+Destination
+</h2>
+
+<div
+class="modal-price"
+id="modalPrice">
+</div>
+
+<p id="modalDescription">
+</p>
+
+<ul
+class="modal-list"
+id="modalList">
+</ul>
+
+<br>
+
+<button
+class="btn btn-gold"
+id="modalBookButton">
+
+<i class="fa-solid fa-calendar-check"></i>
+Book This Destination
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================= BOOKING MESSAGE ================= -->
+
+<div
+class="booking-message"
+id="bookingMessage">
+
+<i class="fa-solid fa-circle-check"></i>
+&nbsp;
+Your booking request has been received!
+
+</div>
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script>
+
+/* ================= MENU ================= */
+
+const menuBtn =
+document.getElementById("menuBtn");
+
+const closeMenu =
+document.getElementById("closeMenu");
+
+const sideMenu =
+document.getElementById("sideMenu");
+
+menuBtn.addEventListener("click",()=>{
+sideMenu.classList.add("active");
+});
+
+closeMenu.addEventListener("click",()=>{
+sideMenu.classList.remove("active");
+});
+
+document
+.querySelectorAll(".side-menu a")
+.forEach(link=>{
+
+link.addEventListener("click",()=>{
+sideMenu.classList.remove("active");
+});
+
+});
+
+
+/* ================= HERO SLIDER ================= */
+
+const slides =
+document.querySelectorAll(".slide");
+
+const dots =
+document.querySelectorAll(".dot");
+
+let currentSlide=0;
+
+function showSlide(index){
+
+slides.forEach(slide=>{
+slide.classList.remove("active");
+});
+
+dots.forEach(dot=>{
+dot.classList.remove("active");
+});
+
+slides[index].classList.add("active");
+dots[index].classList.add("active");
+
+currentSlide=index;
+}
+
+function nextSlide(){
+
+currentSlide++;
+
+if(currentSlide>=slides.length){
+currentSlide=0;
+}
+
+showSlide(currentSlide);
+}
+
+setInterval(nextSlide,6000);
+
+dots.forEach((dot,index)=>{
+
+dot.addEventListener("click",()=>{
+showSlide(index);
+});
+
+});
+
+
+/* ================= BOOKING DATES ================= */
+
+const arrival =
+document.getElementById("arrival");
+
+const departure =
+document.getElementById("departure");
+
+const today =
+new Date().toISOString().split("T")[0];
+
+arrival.min=today;
+departure.min=today;
+
+arrival.addEventListener("change",()=>{
+
+departure.min=arrival.value;
+
+if(
+departure.value &&
+departure.value<arrival.value
+){
+
+departure.value="";
+
+}
+
+});
+
+
+/* ================= DESTINATION SELECT ================= */
+
+function selectDestination(destination){
+
+document.getElementById(
+"destinationSelect"
+).value=destination;
+
+document
+.getElementById("rooms")
+.scrollIntoView({
+behavior:"smooth"
+});
+
+}
+
+
+/* ================= DETAILS DATA ================= */
+
+const destinationData={
+
+Tagaytay:{
+    price:"From ₱3,000 / night",
+    description:
+    "Relax in the cool climate of Tagaytay with comfortable family accommodation designed for groups of up to 13 guests.",
+
+    features:[
+        "Up to 13 guests",
+        "Family Garden Suite",
+        "Private Bathrooms",
+        "Free Wi-Fi",
+        "Private Parking",
+        "Family-friendly accommodation",
+        "Taal Volcano and mountain surroundings"
+    ]
+},
+
+Laguna:{
+    price:"From ₱3,000 / night",
+    description:
+    "Enjoy a peaceful nature retreat in Laguna with spacious accommodation suitable for families and groups of up to 6 guests.",
+
+    features:[
+        "Up to 6 guests",
+        "Nature Family Villa",
+        "Free Wi-Fi",
+        "Garden surroundings",
+        "Wellness and nature experiences",
+        "Family-friendly accommodation"
+    ]
+},
+
+Baguio:{
+    price:"From ₱3,000 / night",
+    description:
+    "Experience the cool mountain climate of Baguio in a cozy family suite designed for groups of up to 16 guests.",
+
+    features:[
+        "Up to 16 guests",
+        "Mountain Family Suite",
+        "Free Wi-Fi",
+        "Mountain surroundings",
+        "Cozy interiors",
+        "Family-friendly accommodation"
+    ]
+},
+
+};
+
+
+/* ================= DETAILS MODAL ================= */
+
+function openDetails(destination){
+
+const data=
+destinationData[destination];
+
+document.getElementById(
+"modalTitle"
+).textContent=
+destination;
+
+document.getElementById(
+"modalPrice"
+).textContent=
+data.price;
+
+document.getElementById(
+"modalDescription"
+).textContent=
+data.description;
+
+const list=
+document.getElementById("modalList");
+
+list.innerHTML="";
+
+data.features.forEach(feature=>{
+
+const li=
+document.createElement("li");
+
+li.textContent=feature;
+
+list.appendChild(li);
+
+});
+
+document.getElementById(
+"modalBookButton"
+).onclick=()=>{
+
+closeDetails();
+
+selectDestination(destination);
+
+};
+
+document.getElementById(
+"detailsModal"
+).classList.add("active");
+
+}
+
+function closeDetails(){
+
+document.getElementById(
+"detailsModal"
+).classList.remove("active");
+
+}
+
+
+/* CLOSE MODAL WHEN CLICKING OUTSIDE */
+
+document
+.getElementById("detailsModal")
+.addEventListener("click",function(e){
+
+if(e.target===this){
+closeDetails();
+}
+
+});
+
+
+/* ================= BOOK ROOM ================= */
+
+function bookRoom(room){
+
+document.getElementById(
+"rooms"
+).scrollIntoView({
+behavior:"smooth"
+});
+
+const message=
+document.getElementById("bookingMessage");
+
+message.innerHTML=
+'<i class="fa-solid fa-circle-check"></i> '+
+'Selected: '+room+
+'. Please complete the booking form above.';
+
+message.classList.add("show");
+
+setTimeout(()=>{
+
+message.classList.remove("show");
+
+},4000);
+
+}
+
+
+/* ================= BOOKING FORM ================= */
+
+document
+.getElementById("bookingForm")
+.addEventListener("submit",function(e){
+
+e.preventDefault();
+
+const destination=
+document.getElementById(
+"destinationSelect"
+).value;
+
+const guestCount=
+document.getElementById(
+"guests"
+).value;
+
+if(!destination){
+
+alert(
+"Please select Tagaytay, Laguna or Baguio."
+);
+
+return;
+
+}
+
+alert(
+"Thank you! Your availability request for "+
+destination+
+" for "+
+guestCount+
+" guest(s) has been received."
+);
+
+});
+
+/* ================= ESCAPE KEY ================= */
+
+document.addEventListener("keydown",function(e){
+
+    if(e.key==="Escape"){
+
+        closeDetails();
+
+        sideMenu.classList.remove("active");
+
+        if(proChatWindow){
+
+            proChatWindow.classList.remove("active");
+
+            proChatWindow.classList.remove("minimized");
+
+        }
+
+    }
+
+});
+
+/* =========================================================
+   MELIÁ PHILIPPINES — PRO CHAT JAVASCRIPT
+========================================================= */
+
+/* ================= PRO CHAT ELEMENTS ================= */
+
+const proChatButton = document.getElementById("proChatButton");
+const proChatWindow = document.getElementById("proChatWindow");
+const proChatClose = document.getElementById("proChatClose");
+const proChatMinimize = document.getElementById("proChatMinimize");
+
+const proChatBody = document.getElementById("proChatBody");
+const proChatInput = document.getElementById("proChatInput");
+const proChatSend = document.getElementById("proChatSend");
+
+const proChatQuick = document.getElementById("proChatQuick");
+const proChatTyping = document.getElementById("proChatTyping");
+
+
+/* ================= OPEN CHAT ================= */
+
+if (proChatButton) {
+
+    proChatButton.addEventListener("click", () => {
+
+        proChatWindow.classList.add("active");
+
+        proChatWindow.classList.remove("minimized");
+
+        setTimeout(() => {
+
+            proChatInput.focus();
+
+        }, 300);
+
+    });
+
+}
+
+
+/* ================= CLOSE CHAT ================= */
+
+if (proChatClose) {
+
+    proChatClose.addEventListener("click", () => {
+
+        proChatWindow.classList.remove("active");
+
+        proChatWindow.classList.remove("minimized");
+
+    });
+
+}
+
+
+/* ================= MINIMIZE CHAT ================= */
+
+if (proChatMinimize) {
+
+    proChatMinimize.addEventListener("click", () => {
+
+        proChatWindow.classList.toggle("minimized");
+
+    });
+
+}
+
+
+
+/* ================= ESCAPE HTML ================= */
+
+function escapeChatHTML(text) {
+
+    const div = document.createElement("div");
+
+    div.textContent = text;
+
+    return div.innerHTML;
+
+}
+
+
+/* ================= ADD USER MESSAGE ================= */
+
+function addUserMessage(message) {
+
+    const messageWrapper =
+        document.createElement("div");
+
+    /* IMPORTANT:
+       Must match CSS:
+       .pro-chat-user
+    */
+
+    messageWrapper.className =
+        "pro-chat-message pro-chat-user";
+
+
+    const messageContent =
+        document.createElement("div");
+
+    messageContent.className =
+        "pro-chat-message-content";
+
+
+    messageContent.innerHTML = `
+
+        <span class="pro-chat-message-name">
+            You
+        </span>
+
+        <div class="pro-chat-bubble">
+            ${escapeChatHTML(message)}
+        </div>
+
+        <span class="pro-chat-time">
+            Just now
+        </span>
+
+    `;
+
+
+    messageWrapper.appendChild(messageContent);
+
+    proChatBody.appendChild(messageWrapper);
+
+
+    scrollChatBottom();
+
+}
+
+
+/* ================= ADD BOT MESSAGE ================= */
+
+function addBotMessage(message) {
+
+    const messageWrapper =
+        document.createElement("div");
+
+    messageWrapper.className =
+        "pro-chat-message";
+
+
+    messageWrapper.innerHTML = `
+
+        <div class="pro-chat-avatar">
+            M
+        </div>
+
+        <div class="pro-chat-message-content">
+
+            <span class="pro-chat-message-name">
+                Meliá Assistant
+            </span>
+
+            <div class="pro-chat-bubble">
+                ${message}
+            </div>
+
+            <span class="pro-chat-time">
+                Just now
+            </span>
+
+        </div>
+
+    `;
+
+
+    proChatBody.appendChild(messageWrapper);
+
+    scrollChatBottom();
+
+}
+
+
+/* ================= SCROLL CHAT ================= */
+
+function scrollChatBottom() {
+
+    proChatBody.scrollTop =
+        proChatBody.scrollHeight;
+
+}
+
+
+/* ================= TYPING ================= */
+
+function showTyping() {
+
+    proChatTyping.classList.add("active");
+
+    scrollChatBottom();
+
+}
+
+
+function hideTyping() {
+
+    proChatTyping.classList.remove("active");
+
+}
+
+
+/* ================= CHAT RESPONSES ================= */
+
+function getChatResponse(question) {
+
+    const q =
+        question.toLowerCase().trim();
+
+
+    /* BOOKING */
+
+    if (
+        q.includes("book") ||
+        q.includes("booking") ||
+        q.includes("reserve") ||
+        q.includes("reservation")
+    ) {
+
+        return `
+            I'd be happy to help you with your booking. 😊<br><br>
+
+            Please choose your preferred destination:
+            <strong>Tagaytay, Laguna, or Baguio.</strong><br><br>
+
+            You can also use our booking form on the website
+            to submit your preferred dates and number of guests.
+        `;
+
+    }
+
+
+    /* ROOMS */
+
+    if (
+        q.includes("room") ||
+        q.includes("rooms") ||
+        q.includes("suite")
+    ) {
+
+        return `
+            We offer comfortable family accommodations
+            in our featured destinations.<br><br>
+
+            <strong>Tagaytay</strong> — Family Garden Suite<br>
+            <strong>Laguna</strong> — Nature Family Villa<br>
+            <strong>Baguio</strong> — Mountain Family Suite<br><br>
+
+            Click the <strong>Rooms</strong> section
+            to view the available accommodations.
+        `;
+
+    }
+
+/* TAGAYTAY */
+
+if (q.includes("tagaytay")) {
+
+    return `
+        <strong>Tagaytay</strong> 🌿<br><br>
+
+        Enjoy the cool climate and relaxing surroundings
+        of Tagaytay with comfortable family accommodation
+        for up to <strong>13 guests.</strong><br><br>
+
+        Starting from
+        <strong>₱3,000 / night.</strong>
+    `;
+
+}
+ 
+/* LAGUNA */
+
+if (q.includes("laguna")) {
+
+    return `
+        <strong>Laguna</strong> 🌴<br><br>
+
+        Enjoy a peaceful nature retreat in Laguna
+        with spacious accommodation suitable for
+        families and groups of up to <strong>6 guests.</strong><br><br>
+
+        Starting from
+        <strong>₱3,000 / night.</strong>
+    `;
+
+}
+
+    
+/* BAGUIO */
+
+if (q.includes("baguio")) {
+
+    return `
+        <strong>Baguio</strong> 🏔️<br><br>
+
+        Experience the cool mountain climate of Baguio
+        in a cozy family suite designed for groups of up to
+        <strong>16 guests.</strong><br><br>
+
+        Starting from
+        <strong>₱3,000 / night.</strong>
+    `;
+
+}
+
+
+    /* PRICE */
+
+    if (
+        q.includes("price") ||
+        q.includes("prices") ||
+        q.includes("how much") ||
+        q.includes("cost")
+    ) {
+
+        return `
+            Our featured accommodation starts from
+            <strong>₱3,000 / night.</strong><br><br>
+
+            The final price may depend on the destination,
+            accommodation and number of guests.
+        `;
+
+    }
+
+
+    /* AMENITIES */
+
+    if (
+        q.includes("amenit") ||
+        q.includes("wifi") ||
+        q.includes("parking") ||
+        q.includes("facilities")
+    ) {
+
+        return `
+            Our featured accommodations may include
+            amenities such as:<br><br>
+
+            ✓ Free Wi-Fi<br>
+            ✓ Private parking<br>
+            ✓ Family-friendly accommodation<br>
+            ✓ Garden or mountain surroundings<br>
+            ✓ Comfortable family spaces
+        `;
+
+    }
+
+
+    /* CONTACT */
+
+    if (
+        q.includes("contact") ||
+        q.includes("phone") ||
+        q.includes("telephone") ||
+        q.includes("email")
+    ) {
+
+        return `
+            For reservations and inquiries,
+            please contact our team through the
+            <strong>Contact & Reservations</strong>
+            section of this website.<br><br>
+
+            📞 <strong>0922 879 5129</strong><br>
+            ✉️ <strong>meliahomesco.businessph@gmail.com</strong>
+        `;
+
+    }
+
+
+    /* HELLO */
+
+    if (
+        q === "hi" ||
+        q === "hello" ||
+        q === "hey" ||
+        q.includes("good morning") ||
+        q.includes("good afternoon") ||
+        q.includes("good evening")
+    ) {
+
+        return `
+            Hello! 👋 Welcome to
+            <strong>Meliá Philippines.</strong><br><br>
+
+            How can I help you today?
+            You can ask me about our
+            <strong>rooms, destinations, prices,
+            amenities or booking information.</strong>
+        `;
+
+    }
+
+
+    /* THANK YOU */
+
+    if (
+        q.includes("thank") ||
+        q.includes("thanks")
+    ) {
+
+        return `
+            You're very welcome! 😊<br><br>
+
+            If you need anything else,
+            I'm here to help.
+        `;
+
+    }
+
+
+    /* DEFAULT */
+
+    return `
+        Thank you for your message. 😊<br><br>
+
+        I can currently help you with:<br><br>
+
+        ✓ <strong>Rooms</strong><br>
+        ✓ <strong>Tagaytay</strong><br>
+        ✓ <strong>Laguna</strong><br>
+        ✓ <strong>Baguio</strong><br>
+        ✓ <strong>Prices</strong><br>
+        ✓ <strong>Amenities</strong><br>
+        ✓ <strong>Booking information</strong><br><br>
+
+        Please try asking one of these topics.
+    `;
+
+}
+
+
+/* ================= SEND MESSAGE ================= */
+
+function sendChatMessage() {
+
+    const message =
+        proChatInput.value.trim();
+
+
+    if (!message) {
+        return;
+    }
+
+
+    /* Add customer message */
+
+    addUserMessage(message);
+
+
+    /* Clear input */
+
+    proChatInput.value = "";
+
+
+    /* Show typing */
+
+    showTyping();
+
+
+    /* Bot response */
+
+    setTimeout(() => {
+
+        hideTyping();
+
+        const response =
+            getChatResponse(message);
+
+        addBotMessage(response);
+
+    }, 900);
+
+}
+
+
+/* ================= SEND BUTTON ================= */
+
+if (proChatSend) {
+
+    proChatSend.addEventListener(
+        "click",
+        sendChatMessage
+    );
+
+}
+
+
+/* ================= ENTER KEY ================= */
+
+if (proChatInput) {
+
+    proChatInput.addEventListener(
+        "keydown",
+        (e) => {
+
+            if (e.key === "Enter") {
+
+                e.preventDefault();
+
+                sendChatMessage();
+
+            }
+
+        }
+    );
+
+}
+
+
+/* ================= QUICK QUESTIONS ================= */
+
+if (proChatQuick) {
+
+    proChatQuick
+        .querySelectorAll("[data-chat-question]")
+        .forEach(button => {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    const question =
+                        button.getAttribute(
+                            "data-chat-question"
+                        );
+
+
+                    addUserMessage(question);
+
+
+                    showTyping();
+
+
+                    setTimeout(() => {
+
+                        hideTyping();
+
+                        const response =
+                            getChatResponse(question);
+
+                        addBotMessage(response);
+
+                    }, 900);
+
+                }
+            );
+
+        });
+
+}
+
+</script>
+
+</body>
+</html>
+
