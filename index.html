@@ -33,6 +33,259 @@ background:#faf9f6;
 color:#222;
 }
 
+html,
+body{
+    overflow-x:hidden;
+    overflow-y:auto;
+}
+
+ /* ================= PAYMENT ================= */
+
+.payment-box{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.78);
+    z-index:7000;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    overflow-y:auto;
+    overflow-x:hidden;
+}
+
+.payment-box.active{
+    display:flex;
+}
+
+.payment-card{
+    width:min(620px,100%);
+    max-height:92vh;
+    overflow-y:auto;
+    overflow-x:hidden;
+    background:#fff;
+    padding:34px;
+    position:relative;
+    box-shadow:0 30px 90px rgba(0,0,0,.45);
+    border-radius:4px;
+}
+
+.payment-card h2{
+    font-family:'Playfair Display',serif;
+    font-size:38px;
+    font-weight:400;
+    margin-bottom:8px;
+}
+
+.payment-intro{
+    color:#777;
+    font-size:13px;
+    line-height:1.7;
+    margin-bottom:22px;
+}
+
+.payment-summary{
+    background:#f7f4ed;
+    border:1px solid #e6dfd1;
+    padding:16px;
+    margin-bottom:22px;
+    font-size:12px;
+    line-height:1.8;
+}
+
+.payment-summary strong{
+    color:#111;
+}
+
+.close-btn{
+    position:absolute;
+    right:18px;
+    top:12px;
+    border:0;
+    background:none;
+    font-size:30px;
+    cursor:pointer;
+    color:#555;
+}
+
+.payment-methods{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin-bottom:18px;
+}
+
+.payment-btn{
+    border:1px solid #ccc;
+    background:#fff;
+    padding:14px;
+    font-family:inherit;
+    font-weight:700;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.payment-btn:hover,
+.payment-btn.selected{
+    background:#111;
+    color:#d3b66e;
+    border-color:#111;
+}
+
+.payment-details{
+    display:none;
+    background:#faf9f6;
+    border:1px solid #e7e2d8;
+    padding:20px;
+    margin-bottom:20px;
+    text-align:center;
+}
+
+.payment-details.active{
+    display:block;
+}
+
+.payment-details p{
+    font-size:13px;
+    margin:7px 0;
+    color:#444;
+}
+
+.payment-details strong{
+    color:#111;
+}
+
+.payment-qr{
+    display:block;
+    width:180px;
+    height:180px;
+    object-fit:contain;
+    margin:0 auto 15px;
+    border:1px solid #ddd;
+    background:#fff;
+}
+
+.payment-placeholder{
+    font-size:11px;
+    color:#999;
+    margin-top:10px;
+}
+
+.payment-card label{
+    display:block;
+    font-size:10px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    color:#777;
+    margin:13px 0 7px;
+}
+
+.payment-card input{
+    width:100%;
+    padding:13px;
+    border:1px solid #ddd;
+    outline:none;
+    font-family:inherit;
+    font-size:13px;
+    background:#fff;
+}
+
+.payment-card input:focus{
+    border-color:#b49652;
+}
+
+.submit-btn{
+    width:100%;
+    border:0;
+    background:#111;
+    color:#fff;
+    padding:15px;
+    margin-top:20px;
+    font-family:inherit;
+    font-size:11px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    cursor:pointer;
+}
+
+.submit-btn:hover{
+    background:#b49652;
+}
+
+.confirmation{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.78);
+    z-index:7100;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.confirmation.active{
+    display:flex;
+}
+
+.confirmation-card{
+    background:#fff;
+    width:min(520px,100%);
+    padding:42px;
+    text-align:center;
+    box-shadow:0 30px 90px rgba(0,0,0,.45);
+}
+
+.confirmation-card h2{
+    font-family:'Playfair Display',serif;
+    font-size:38px;
+    font-weight:400;
+    margin-bottom:15px;
+}
+
+.confirmation-card p{
+    color:#666;
+    font-size:13px;
+    line-height:1.8;
+}
+
+.confirmation-close{
+    margin-top:22px;
+    border:0;
+    background:#111;
+    color:#fff;
+    padding:13px 24px;
+    font-family:inherit;
+    font-size:11px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+@media(max-width:600px){
+
+    .payment-card{
+        padding:28px 20px;
+    }
+
+    .payment-card h2{
+        font-size:31px;
+    }
+
+    .payment-methods{
+        grid-template-columns:1fr;
+    }
+
+    .payment-qr{
+        width:160px;
+        height:160px;
+    }
+
+    .confirmation-card{
+        padding:32px 22px;
+    }
+}  
+   
 /* ================= HEADER ================= */
 
 header{
@@ -2576,18 +2829,218 @@ Check Availability
 </button>
 
 </form>
+   
+</section>
+
+   <!-- ================= PAYMENT ================= -->
+
+<section class="payment-box" id="paymentBox" aria-hidden="true">
+
+    <div class="payment-card">
+
+        <button
+            type="button"
+            class="close-btn"
+            onclick="closePayment()"
+            aria-label="Close payment">
+            ×
+        </button>
+
+        <h2>Complete Your Booking</h2>
+
+        <p class="payment-intro">
+            Choose your preferred payment method, then enter your
+            payment details and proof of payment.
+        </p>
+
+        <div
+            class="payment-summary"
+            id="paymentSummary">
+        </div>
 
 
-<div class="slider-dots">
+        <div class="payment-methods">
 
-<div class="dot active" data-slide="0"></div>
-<div class="dot" data-slide="1"></div>
-<div class="dot" data-slide="2"></div>
+            <button
+                type="button"
+                id="gcashBtn"
+                class="payment-btn"
+                onclick="selectPayment('gcash')">
+                GCash
+            </button>
 
-</div>
+            <button
+                type="button"
+                id="bdoBtn"
+                class="payment-btn"
+                onclick="selectPayment('bdo')">
+                BDO
+            </button>
+
+        </div>
+
+
+        <!-- GCASH -->
+
+        <div
+            id="gcashDetails"
+            class="payment-details">
+
+            <img
+                src="gcash.jpg"
+                class="payment-qr"
+                alt="GCash QR Code"
+                onerror="
+                this.style.display='none';
+                document.getElementById('gcashQrNote').style.display='block';
+                "
+            >
+
+            <div
+                id="gcashQrNote"
+                class="payment-placeholder"
+                style="display:none;">
+
+                Add your GCash QR image as
+                <strong>gcash</strong>
+                in the same folder as this HTML file.
+
+            </div>
+
+            <p>
+                <strong>GCash Name:</strong>
+                Erika Faye R.
+            </p>
+
+            <p>
+                <strong>GCash Number:</strong>
+                0917-721-4492
+            </p>
+
+        </div>
+
+
+        <!-- BDO -->
+
+        <div
+            id="bdoDetails"
+            class="payment-details">
+
+            <img
+                src="bdo.jpg"
+                class="payment-qr"
+                alt="BDO QR Code"
+                onerror="
+                this.style.display='none';
+                document.getElementById('bdoQrNote').style.display='block';
+                "
+            >
+
+            <div
+                id="bdoQrNote"
+                class="payment-placeholder"
+                style="display:none;">
+
+                Add your BDO QR image as
+                <strong>Bdo</strong>
+                in the same folder as this HTML file.
+
+            </div>
+
+            <p>
+                <strong>BDO Account Name:</strong>
+                Erika Faye D.
+            </p>
+
+            <p>
+                <strong>BDO Account Number:</strong>
+                002070096064
+            </p>
+
+        </div>
+
+
+        <!-- CUSTOMER NAME -->
+
+        <label for="paymentName">
+            Full Name
+        </label>
+
+        <input
+            type="text"
+            id="paymentName"
+            placeholder="Enter your full name"
+            autocomplete="name"
+        >
+
+
+        <!-- REFERENCE -->
+
+        <label for="paymentReference">
+            Payment Reference Number
+        </label>
+
+        <input
+            type="text"
+            id="paymentReference"
+            placeholder="Enter transaction/reference number"
+        >
+
+
+        <!-- PAYMENT PROOF -->
+
+        <label for="paymentProof">
+            Payment Proof
+        </label>
+
+        <input
+            type="file"
+            id="paymentProof"
+            accept="image/*"
+        >
+
+
+        <button
+            type="button"
+            class="submit-btn"
+            onclick="submitPayment()">
+
+            Submit Payment Details
+
+        </button>
+
+    </div>
 
 </section>
 
+
+<!-- ================= CONFIRMATION ================= -->
+
+<section
+    class="confirmation"
+    id="confirmationBox"
+    aria-hidden="true">
+
+    <div class="confirmation-card">
+
+        <h2>
+            ✓ Booking Submitted!
+        </h2>
+
+        <p id="confirmationText"></p>
+
+        <button
+            type="button"
+            class="confirmation-close"
+            onclick="closeConfirmation()">
+
+            Close
+
+        </button>
+
+    </div>
+
+</section>
 
 <!-- ================= INTRO ================= -->
 
@@ -4009,7 +4462,6 @@ Your booking request has been received!
 
 </div>
 
-
 <!-- ================= JAVASCRIPT ================= -->
 
 <script>
@@ -4295,45 +4747,284 @@ message.classList.remove("show");
 },4000);
 
 }
+/* ================= BOOKING FORM + PAYMENT ================= */
+
+let selectedPayment = "";
+let currentBooking = {};
+
+document.getElementById("bookingForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const destination = document.getElementById("destinationSelect").value;
+    const arrival = document.getElementById("arrival").value;
+    const departure = document.getElementById("departure").value;
+    const guests = document.getElementById("guests").value;
+
+    if (!destination || !arrival || !departure || !guests) {
+        alert("Please complete all booking details.");
+        return;
+    }
+
+    if (new Date(departure) <= new Date(arrival)) {
+        alert("Departure date must be after arrival date.");
+        return;
+    }
+
+    currentBooking = {
+        destination,
+        arrival,
+        departure,
+        guests
+    };
+
+    selectedPayment = "";
+
+    const paymentBox = document.getElementById("paymentBox");
+    const paymentSummary = document.getElementById("paymentSummary");
+
+    if (!paymentBox || !paymentSummary) {
+        alert("Payment section was not found.");
+        return;
+    }
+
+    paymentSummary.innerHTML =
+        "<strong>Destination:</strong> " + escapeText(destination) + "<br>" +
+        "<strong>Arrival:</strong> " + escapeText(arrival) + "<br>" +
+        "<strong>Departure:</strong> " + escapeText(departure) + "<br>" +
+        "<strong>Guests:</strong> " + escapeText(guests) + "<br><br>" +
+        "<strong>Starting rate:</strong> ₱3,000 / night<br>" +
+        "<span style='color:#888'>Final amount will be confirmed by the booking team.</span>";
+
+    document.getElementById("gcashDetails").classList.remove("active");
+    document.getElementById("bdoDetails").classList.remove("active");
+
+    document.getElementById("gcashBtn").classList.remove("selected");
+    document.getElementById("bdoBtn").classList.remove("selected");
+
+    paymentBox.classList.add("active");
+    paymentBox.setAttribute("aria-hidden", "false");
+});
 
 
-/* ================= BOOKING FORM ================= */
-
-document
-.getElementById("bookingForm")
-.addEventListener("submit",function(e){
-
-e.preventDefault();
-
-const destination=
-document.getElementById(
-"destinationSelect"
-).value;
-
-const guestCount=
-document.getElementById(
-"guests"
-).value;
-
-if(!destination){
-
-alert(
-"Please select Tagaytay, Laguna or Baguio."
-);
-
-return;
-
+function escapeText(value) {
+    const div = document.createElement("div");
+    div.textContent = value == null ? "" : String(value);
+    return div.innerHTML;
 }
 
-alert(
-"Thank you! Your availability request for "+
-destination+
-" for "+
-guestCount+
-" guest(s) has been received."
-);
 
-});
+function selectPayment(method) {
+
+    selectedPayment = method;
+
+    const gcashBtn = document.getElementById("gcashBtn");
+    const bdoBtn = document.getElementById("bdoBtn");
+
+    const gcashDetails = document.getElementById("gcashDetails");
+    const bdoDetails = document.getElementById("bdoDetails");
+
+    if (!gcashBtn || !bdoBtn || !gcashDetails || !bdoDetails) {
+        return;
+    }
+
+    gcashBtn.classList.toggle(
+        "selected",
+        method === "gcash"
+    );
+
+    bdoBtn.classList.toggle(
+        "selected",
+        method === "bdo"
+    );
+
+    gcashDetails.classList.toggle(
+        "active",
+        method === "gcash"
+    );
+
+    bdoDetails.classList.toggle(
+        "active",
+        method === "bdo"
+    );
+}
+
+
+function closePayment() {
+
+    const paymentBox =
+        document.getElementById("paymentBox");
+
+    if (paymentBox) {
+
+        paymentBox.classList.remove("active");
+
+        paymentBox.setAttribute(
+            "aria-hidden",
+            "true"
+        );
+    }
+}
+
+
+function submitPayment() {
+
+    const paymentName =
+        document.getElementById("paymentName");
+
+    const paymentReference =
+        document.getElementById("paymentReference");
+
+    const paymentProof =
+        document.getElementById("paymentProof");
+
+    const confirmationBox =
+        document.getElementById("confirmationBox");
+
+    const confirmationText =
+        document.getElementById("confirmationText");
+
+
+    if (!selectedPayment) {
+
+        alert(
+            "Please select GCash or BDO."
+        );
+
+        return;
+    }
+
+
+    if (!paymentName || !paymentName.value.trim()) {
+
+        alert(
+            "Please enter your full name."
+        );
+
+        return;
+    }
+
+
+    if (!paymentReference || !paymentReference.value.trim()) {
+
+        alert(
+            "Please enter your payment reference number."
+        );
+
+        return;
+    }
+
+
+    if (
+        !paymentProof ||
+        !paymentProof.files ||
+        !paymentProof.files.length
+    ) {
+
+        alert(
+            "Please attach your payment proof."
+        );
+
+        return;
+    }
+
+
+    const methodName =
+        selectedPayment === "gcash"
+            ? "GCash"
+            : "BDO";
+
+
+    const proofName =
+        paymentProof.files[0].name;
+
+
+    if (confirmationText) {
+
+        confirmationText.innerHTML =
+
+            "Thank you, <strong>" +
+            escapeText(
+                paymentName.value.trim()
+            ) +
+            "</strong>.<br><br>" +
+
+            "Your booking request for <strong>" +
+            escapeText(
+                currentBooking.destination
+            ) +
+            "</strong> from <strong>" +
+
+            escapeText(
+                currentBooking.arrival
+            ) +
+
+            "</strong> to <strong>" +
+
+            escapeText(
+                currentBooking.departure
+            ) +
+
+            "</strong> for <strong>" +
+
+            escapeText(
+                currentBooking.guests
+            ) +
+
+            " guest(s)</strong> has been prepared.<br><br>" +
+
+            "Payment method: <strong>" +
+            methodName +
+            "</strong><br>" +
+
+            "Reference: <strong>" +
+            escapeText(
+                paymentReference.value.trim()
+            ) +
+            "</strong><br>" +
+
+            "Proof attached: <strong>" +
+            escapeText(proofName) +
+            "</strong><br><br>" +
+
+            "Please note: this HTML version shows a confirmation on the website, but it does not upload the payment proof automatically.";
+    }
+
+
+    closePayment();
+
+
+    if (confirmationBox) {
+
+        confirmationBox.classList.add("active");
+
+        confirmationBox.setAttribute(
+            "aria-hidden",
+            "false"
+        );
+    }
+}
+
+
+function closeConfirmation() {
+
+    const confirmationBox =
+        document.getElementById(
+            "confirmationBox"
+        );
+
+    if (confirmationBox) {
+
+        confirmationBox.classList.remove(
+            "active"
+        );
+
+        confirmationBox.setAttribute(
+            "aria-hidden",
+            "true"
+        );
+    }
+}
+
 
 /* ================= ESCAPE KEY ================= */
 
@@ -4912,8 +5603,8 @@ if (proChatQuick) {
 
 }
 
+
 </script>
 
 </body>
 </html>
-
