@@ -227,29 +227,84 @@ body{
     cursor:pointer;
     color:#555;
 }
-
 .payment-methods{
     display:grid;
     grid-template-columns:1fr 1fr;
-    gap:10px;
-    margin-bottom:18px;
+    gap:20px;
+    margin-bottom:22px;
 }
 
 .payment-btn{
-    border:1px solid #ccc;
+    width:100%;
+    height:98px;
+
+    border:1px solid #cfd2d7;
+    border-radius:5px;
+
     background:#fff;
-    padding:14px;
+
+    padding:15px;
+
     font-family:inherit;
     font-weight:700;
+
     cursor:pointer;
-    transition:.25s;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    transition:
+        border-color .2s ease,
+        box-shadow .2s ease,
+        transform .15s ease;
 }
 
-.payment-btn:hover,
+.payment-btn:hover{
+    background:#fff;
+    color:inherit;
+    border-color:#999;
+
+    box-shadow:0 4px 14px rgba(0,0,0,.08);
+}
+
 .payment-btn.selected{
-    background:#111;
-    color:#d3b66e;
-    border-color:#111;
+    background:#fff;
+    color:inherit;
+
+    border:2px solid #333;
+
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+}
+
+.payment-btn img{
+    display:block;
+
+    max-width:190px;
+    max-height:58px;
+
+    width:auto;
+    height:auto;
+
+    object-fit:contain;
+}
+
+@media(max-width:600px){
+
+    .payment-methods{
+        grid-template-columns:1fr;
+        gap:12px;
+    }
+
+    .payment-btn{
+        height:82px;
+    }
+
+    .payment-btn img{
+        max-width:160px;
+        max-height:50px;
+    }
+
 }
 
 .payment-details{
@@ -3030,25 +3085,33 @@ Check Availability
         </div>
 
 
-        <div class="payment-methods">
+       <div class="payment-methods">
 
-            <button
-                type="button"
-                id="gcashBtn"
-                class="payment-btn"
-                onclick="selectPayment('gcash')">
-                GCash
-            </button>
+    <button
+        type="button"
+        id="gcashBtn"
+        class="payment-btn"
+        onclick="selectPayment('gcash')">
 
-            <button
-                type="button"
-                id="bdoBtn"
-                class="payment-btn"
-                onclick="selectPayment('bdo')">
-                BDO
-            </button>
+        <img
+            src="cash.jpg"
+            alt="GCash">
 
-        </div>
+    </button>
+
+    <button
+        type="button"
+        id="bdoBtn"
+        class="payment-btn"
+        onclick="selectPayment('bdo')">
+
+        <img
+            src="bd.jpg"
+            alt="BDO">
+
+    </button>
+
+</div>
 
 
         <!-- GCASH -->
