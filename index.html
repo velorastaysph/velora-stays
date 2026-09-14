@@ -39,6 +39,126 @@ body{
     overflow-y:auto;
 }
 
+/* ================= AVAILABILITY RESULT ================= */
+
+.availability-result{
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:9998;
+    background:rgba(0,0,0,.78);
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.availability-result.active{
+    display:flex;
+}
+
+.availability-card{
+    position:relative;
+    width:min(520px,100%);
+    background:#fff;
+    padding:40px;
+    box-shadow:0 20px 60px rgba(0,0,0,.35);
+    border-radius:4px;
+}
+
+.availability-close{
+    position:absolute;
+    top:12px;
+    right:15px;
+    width:38px;
+    height:38px;
+    border:none;
+    background:transparent;
+    font-size:30px;
+    cursor:pointer;
+    color:#555;
+}
+
+.availability-label{
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:2px;
+    color:#b49652;
+    margin-bottom:8px;
+}
+
+.availability-card h2{
+    font-family:'Playfair Display',serif;
+    font-size:30px;
+    margin-bottom:25px;
+    color:#111;
+}
+
+.availability-summary{
+    border-top:1px solid #ddd;
+    border-bottom:1px solid #ddd;
+    padding:20px 0;
+    line-height:1.8;
+    font-size:14px;
+}
+
+.availability-summary strong{
+    color:#111;
+}
+
+.availability-total{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:22px 0;
+}
+
+.availability-total span{
+    font-size:13px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:1px;
+}
+
+.availability-total strong{
+    font-size:25px;
+    color:#b49652;
+}
+
+.proceed-payment-btn{
+    width:100%;
+    min-height:55px;
+    border:none;
+    background:#111;
+    color:#fff;
+    font-family:inherit;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:1.5px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.proceed-payment-btn:hover{
+    background:#b49652;
+}
+
+@media(max-width:600px){
+
+    .availability-card{
+        padding:30px 22px;
+    }
+
+    .availability-card h2{
+        font-size:25px;
+    }
+
+    .availability-total strong{
+        font-size:22px;
+    }
+
+}
+
+    
  /* ================= PAYMENT ================= */
 
 .payment-box{
@@ -2832,6 +2952,57 @@ Check Availability
    
 </section>
 
+<!-- ================= AVAILABILITY RESULT ================= -->
+
+<section
+    class="availability-result"
+    id="availabilityResult"
+    aria-hidden="true">
+
+    <div class="availability-card">
+
+        <button
+            type="button"
+            class="availability-close"
+            onclick="closeAvailability()"
+            aria-label="Close">
+            ×
+        </button>
+
+        <div class="availability-label">
+            AVAILABILITY RESULT
+        </div>
+
+        <h2>Your Stay Summary</h2>
+
+        <div
+            class="availability-summary"
+            id="availabilitySummary">
+        </div>
+
+        <div class="availability-total">
+
+            <span>Total Amount</span>
+
+            <strong id="availabilityTotal">
+                ₱0
+            </strong>
+
+        </div>
+
+        <button
+            type="button"
+            class="proceed-payment-btn"
+            onclick="proceedToPayment()">
+
+            PROCEED TO PAYMENT
+
+        </button>
+
+    </div>
+
+</section>
+    
    <!-- ================= PAYMENT ================= -->
 
 <section class="payment-box" id="paymentBox" aria-hidden="true">
@@ -4461,7 +4632,6 @@ id="bookingMessage">
 Your booking request has been received!
 
 </div>
-
 <!-- ================= JAVASCRIPT ================= -->
 
 <script>
@@ -4747,85 +4917,362 @@ message.classList.remove("show");
 },4000);
 
 }
-/* ================= BOOKING FORM + PAYMENT ================= */
+
+/* ================= BOOKING + AVAILABILITY + PAYMENT ================= */
 
 let selectedPayment = "";
 let currentBooking = {};
 
-document.getElementById("bookingForm").addEventListener("submit", function(e) {
-    e.preventDefault();
+const bookingForm = document.getElementById("bookingForm");
 
-    const destination = document.getElementById("destinationSelect").value;
-    const arrival = document.getElementById("arrival").value;
-    const departure = document.getElementById("departure").value;
-    const guests = document.getElementById("guests").value;
+if (bookingForm) {
 
-    if (!destination || !arrival || !departure || !guests) {
-        alert("Please complete all booking details.");
+    bookingForm.addEventListener("submit", function(e) {
+
+        e.preventDefault();
+
+        const destination =
+            document.getElementById("destinationSelect").value;
+
+        const arrival =
+            document.getElementById("arrival").value;
+
+        const departure =
+            document.getElementById("departure").value;
+
+        const guests =
+            document.getElementById("guests").value;
+
+        if (!destination || !arrival || !departure || !guests) {
+
+            alert("Please complete all booking details.");
+
+            return;
+        }
+
+
+        /* ================= DATE CALCULATION ================= */
+
+        const start =
+            new Date(arrival + "T00:00:00");
+
+        const end =
+            new Date(departure + "T00:00:00");
+
+
+        if (end <= start) {
+
+            alert(
+                "Departure date must be after arrival date."
+            );
+
+            return;
+        }
+
+
+        const nights =
+            Math.ceil(
+                (end - start) /
+                (1000 * 60 * 60 * 24)
+            );
+
+
+        /* ================= PRICE ================= */
+
+        const pricePerNight = 3000;
+
+        const total =
+            pricePerNight * nights;
+
+
+        /* ================= SAVE BOOKING ================= */
+
+        currentBooking = {
+
+            destination: destination,
+
+            arrival: arrival,
+
+            departure: departure,
+
+            guests: guests,
+
+            nights: nights,
+
+            rate: pricePerNight,
+
+            total: total
+
+        };
+
+
+        /* ================= SHOW RESULT ================= */
+
+        const availabilityResult =
+            document.getElementById(
+                "availabilityResult"
+            );
+
+        const availabilitySummary =
+            document.getElementById(
+                "availabilitySummary"
+            );
+
+        const availabilityTotal =
+            document.getElementById(
+                "availabilityTotal"
+            );
+
+
+        if (
+            !availabilityResult ||
+            !availabilitySummary ||
+            !availabilityTotal
+        ) {
+
+            alert(
+                "Availability result section was not found."
+            );
+
+            return;
+        }
+
+
+        availabilitySummary.innerHTML = `
+
+            <strong>Destination:</strong>
+            ${escapeText(destination)}
+
+            <br>
+
+            <strong>Arrival:</strong>
+            ${escapeText(arrival)}
+
+            <br>
+
+            <strong>Departure:</strong>
+            ${escapeText(departure)}
+
+            <br>
+
+            <strong>Guests:</strong>
+            ${escapeText(guests)}
+
+            <br>
+
+            <strong>Number of Nights:</strong>
+            ${nights}
+
+            <br>
+
+            <strong>Price per Night:</strong>
+            ₱${pricePerNight.toLocaleString("en-PH")}
+
+            <br>
+
+            <strong>Calculation:</strong>
+            ${nights} × ₱${pricePerNight.toLocaleString("en-PH")}
+
+        `;
+
+
+        availabilityTotal.textContent =
+            "₱" +
+            total.toLocaleString("en-PH");
+
+
+        availabilityResult.classList.add("active");
+
+        availabilityResult.setAttribute(
+            "aria-hidden",
+            "false"
+        );
+
+    });
+
+}
+
+
+/* ================= PROCEED TO PAYMENT ================= */
+
+function proceedToPayment() {
+
+    const availabilityResult =
+        document.getElementById(
+            "availabilityResult"
+        );
+
+    const paymentBox =
+        document.getElementById(
+            "paymentBox"
+        );
+
+    const paymentSummary =
+        document.getElementById(
+            "paymentSummary"
+        );
+
+
+    if (!paymentBox || !paymentSummary) {
+
+        alert(
+            "Payment section was not found."
+        );
+
         return;
     }
 
-    if (new Date(departure) <= new Date(arrival)) {
-        alert("Departure date must be after arrival date.");
-        return;
-    }
 
-    currentBooking = {
-        destination,
-        arrival,
-        departure,
-        guests
-    };
+    paymentSummary.innerHTML = `
+
+        <strong>Destination:</strong>
+        ${escapeText(currentBooking.destination)}
+
+        <br><br>
+
+        <strong>Arrival:</strong>
+        ${escapeText(currentBooking.arrival)}
+
+        <br><br>
+
+        <strong>Departure:</strong>
+        ${escapeText(currentBooking.departure)}
+
+        <br><br>
+
+        <strong>Guests:</strong>
+        ${escapeText(currentBooking.guests)}
+
+        <br><br>
+
+        <strong>Number of Nights:</strong>
+        ${currentBooking.nights}
+
+        <br><br>
+
+        <strong>Price per Night:</strong>
+        ₱${currentBooking.rate.toLocaleString("en-PH")}
+
+        <hr>
+
+        <strong>Total Amount:</strong>
+        ₱${currentBooking.total.toLocaleString("en-PH")}
+
+    `;
+
+
+    /* Reset payment selection */
 
     selectedPayment = "";
 
-    const paymentBox = document.getElementById("paymentBox");
-    const paymentSummary = document.getElementById("paymentSummary");
 
-    if (!paymentBox || !paymentSummary) {
-        alert("Payment section was not found.");
-        return;
+    const gcashBtn =
+        document.getElementById("gcashBtn");
+
+    const bdoBtn =
+        document.getElementById("bdoBtn");
+
+    const gcashDetails =
+        document.getElementById("gcashDetails");
+
+    const bdoDetails =
+        document.getElementById("bdoDetails");
+
+
+    if (gcashBtn)
+        gcashBtn.classList.remove("selected");
+
+    if (bdoBtn)
+        bdoBtn.classList.remove("selected");
+
+    if (gcashDetails)
+        gcashDetails.classList.remove("active");
+
+    if (bdoDetails)
+        bdoDetails.classList.remove("active");
+
+
+    /* Close availability */
+
+    if (availabilityResult) {
+
+        availabilityResult.classList.remove("active");
+
+        availabilityResult.setAttribute(
+            "aria-hidden",
+            "true"
+        );
+
     }
 
-    paymentSummary.innerHTML =
-        "<strong>Destination:</strong> " + escapeText(destination) + "<br>" +
-        "<strong>Arrival:</strong> " + escapeText(arrival) + "<br>" +
-        "<strong>Departure:</strong> " + escapeText(departure) + "<br>" +
-        "<strong>Guests:</strong> " + escapeText(guests) + "<br><br>" +
-        "<strong>Starting rate:</strong> ₱3,000 / night<br>" +
-        "<span style='color:#888'>Final amount will be confirmed by the booking team.</span>";
 
-    document.getElementById("gcashDetails").classList.remove("active");
-    document.getElementById("bdoDetails").classList.remove("active");
-
-    document.getElementById("gcashBtn").classList.remove("selected");
-    document.getElementById("bdoBtn").classList.remove("selected");
+    /* Open payment */
 
     paymentBox.classList.add("active");
-    paymentBox.setAttribute("aria-hidden", "false");
-});
 
+    paymentBox.setAttribute(
+        "aria-hidden",
+        "false"
+    );
 
-function escapeText(value) {
-    const div = document.createElement("div");
-    div.textContent = value == null ? "" : String(value);
-    return div.innerHTML;
 }
 
+
+/* ================= CLOSE AVAILABILITY ================= */
+
+function closeAvailability() {
+
+    const availabilityResult =
+        document.getElementById(
+            "availabilityResult"
+        );
+
+    if (availabilityResult) {
+
+        availabilityResult.classList.remove(
+            "active"
+        );
+
+        availabilityResult.setAttribute(
+            "aria-hidden",
+            "true"
+        );
+
+    }
+
+}
+
+
+/* ================= PAYMENT ================= */
 
 function selectPayment(method) {
 
     selectedPayment = method;
 
-    const gcashBtn = document.getElementById("gcashBtn");
-    const bdoBtn = document.getElementById("bdoBtn");
 
-    const gcashDetails = document.getElementById("gcashDetails");
-    const bdoDetails = document.getElementById("bdoDetails");
+    const gcashBtn =
+        document.getElementById("gcashBtn");
 
-    if (!gcashBtn || !bdoBtn || !gcashDetails || !bdoDetails) {
+    const bdoBtn =
+        document.getElementById("bdoBtn");
+
+    const gcashDetails =
+        document.getElementById("gcashDetails");
+
+    const bdoDetails =
+        document.getElementById("bdoDetails");
+
+
+    if (
+        !gcashBtn ||
+        !bdoBtn ||
+        !gcashDetails ||
+        !bdoDetails
+    ) {
+
         return;
     }
+
 
     gcashBtn.classList.toggle(
         "selected",
@@ -4837,6 +5284,7 @@ function selectPayment(method) {
         method === "bdo"
     );
 
+
     gcashDetails.classList.toggle(
         "active",
         method === "gcash"
@@ -4846,25 +5294,52 @@ function selectPayment(method) {
         "active",
         method === "bdo"
     );
+
 }
 
+
+/* ================= CLOSE PAYMENT ================= */
 
 function closePayment() {
 
     const paymentBox =
-        document.getElementById("paymentBox");
+        document.getElementById(
+            "paymentBox"
+        );
 
     if (paymentBox) {
 
-        paymentBox.classList.remove("active");
+        paymentBox.classList.remove(
+            "active"
+        );
 
         paymentBox.setAttribute(
             "aria-hidden",
             "true"
         );
+
     }
+
 }
 
+
+/* ================= ESCAPE TEXT ================= */
+
+function escapeText(value) {
+
+    const div =
+        document.createElement("div");
+
+    div.textContent =
+        value == null
+            ? ""
+            : String(value);
+
+    return div.innerHTML;
+}
+
+
+/* ================= SUBMIT PAYMENT ================= */
 
 function submitPayment() {
 
@@ -4885,31 +5360,19 @@ function submitPayment() {
 
 
     if (!selectedPayment) {
-
-        alert(
-            "Please select GCash or BDO."
-        );
-
+        alert("Please select GCash or BDO.");
         return;
     }
 
 
     if (!paymentName || !paymentName.value.trim()) {
-
-        alert(
-            "Please enter your full name."
-        );
-
+        alert("Please enter your full name.");
         return;
     }
 
 
     if (!paymentReference || !paymentReference.value.trim()) {
-
-        alert(
-            "Please enter your payment reference number."
-        );
-
+        alert("Please enter your payment reference number.");
         return;
     }
 
@@ -4919,11 +5382,7 @@ function submitPayment() {
         !paymentProof.files ||
         !paymentProof.files.length
     ) {
-
-        alert(
-            "Please attach your payment proof."
-        );
-
+        alert("Please attach your payment proof.");
         return;
     }
 
@@ -4941,52 +5400,45 @@ function submitPayment() {
     if (confirmationText) {
 
         confirmationText.innerHTML =
-
             "Thank you, <strong>" +
-            escapeText(
-                paymentName.value.trim()
-            ) +
+            escapeText(paymentName.value.trim()) +
             "</strong>.<br><br>" +
 
             "Your booking request for <strong>" +
-            escapeText(
-                currentBooking.destination
-            ) +
+            escapeText(currentBooking.destination) +
             "</strong> from <strong>" +
-
-            escapeText(
-                currentBooking.arrival
-            ) +
-
+            escapeText(currentBooking.arrival) +
             "</strong> to <strong>" +
-
-            escapeText(
-                currentBooking.departure
-            ) +
-
+            escapeText(currentBooking.departure) +
             "</strong> for <strong>" +
-
-            escapeText(
-                currentBooking.guests
-            ) +
-
+            escapeText(currentBooking.guests) +
             " guest(s)</strong> has been prepared.<br><br>" +
+
+            "Number of nights: <strong>" +
+            currentBooking.nights +
+            "</strong><br>" +
+
+            "Price per night: <strong>₱" +
+            currentBooking.rate.toLocaleString("en-PH") +
+            "</strong><br>" +
+
+            "Total amount: <strong>₱" +
+            currentBooking.total.toLocaleString("en-PH") +
+            "</strong><br>" +
 
             "Payment method: <strong>" +
             methodName +
             "</strong><br>" +
 
             "Reference: <strong>" +
-            escapeText(
-                paymentReference.value.trim()
-            ) +
+            escapeText(paymentReference.value.trim()) +
             "</strong><br>" +
 
             "Proof attached: <strong>" +
             escapeText(proofName) +
             "</strong><br><br>" +
 
-            "Please note: this HTML version shows a confirmation on the website, but it does not upload the payment proof automatically.";
+            "Your payment details have been received.";
     }
 
 
@@ -5001,52 +5453,31 @@ function submitPayment() {
             "aria-hidden",
             "false"
         );
+
     }
+
 }
 
+
+/* ================= CLOSE CONFIRMATION ================= */
 
 function closeConfirmation() {
 
     const confirmationBox =
-        document.getElementById(
-            "confirmationBox"
-        );
+        document.getElementById("confirmationBox");
 
     if (confirmationBox) {
 
-        confirmationBox.classList.remove(
-            "active"
-        );
+        confirmationBox.classList.remove("active");
 
         confirmationBox.setAttribute(
             "aria-hidden",
             "true"
         );
+
     }
+
 }
-
-
-/* ================= ESCAPE KEY ================= */
-
-document.addEventListener("keydown",function(e){
-
-    if(e.key==="Escape"){
-
-        closeDetails();
-
-        sideMenu.classList.remove("active");
-
-        if(proChatWindow){
-
-            proChatWindow.classList.remove("active");
-
-            proChatWindow.classList.remove("minimized");
-
-        }
-
-    }
-
-});
 
 /* =========================================================
    MELIÁ PHILIPPINES — PRO CHAT JAVASCRIPT
@@ -5608,3 +6039,5 @@ if (proChatQuick) {
 
 </body>
 </html>
+    
+
